@@ -1,13 +1,13 @@
-#include "configuration.h"
-#include "logger.h"
-#include "utilities.h"
-
 #include <string>
 #include <vector>
 #include <iostream>
 //#include <filesystem> 
 #include <cstdlib>
 #include <filesystem> // Required for std::filesystem
+
+#include "configuration.h"
+#include "logger.h"
+#include "utilities.h"
 
 namespace fs = std::filesystem;
 using namespace std;

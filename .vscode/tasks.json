@@ -3,30 +3,14 @@
     "version": "2.0.0",
     "tasks": [
 		{
-            "label": "Build All",
-            "dependsOn": [
-                "Compile logger object",
-                "Compile configuration object",
-                "Compile utilities object",
-                "Compile EncoderFactory object",
-                "Compile Encoder_ffmpeg object",
-                "Compile Encoder_Handbrake object",
-                "Create Static Library",
-                "Build Main Program"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-		{
             "label": "Compile logger object",
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/library/logger.cpp",
-                "-o",
+                "${workspaceFolder}/src/logger.cpp",
+                "-o",                
                 "${workspaceFolder}/build/logger.o"
             ],
             "group": "build",
@@ -37,8 +21,9 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/library/configuration.cpp",
+                "${workspaceFolder}/src/configuration.cpp",
                 "-o",
                 "${workspaceFolder}/build/configuration.o"
             ],
@@ -50,8 +35,9 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/library/utilities.cpp",
+                "${workspaceFolder}/src/utilities.cpp",
                 "-o",
                 "${workspaceFolder}/build/utilities.o"
             ],
@@ -63,8 +49,9 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/library/EncoderFactory.cpp",
+                "${workspaceFolder}/src/EncoderFactory.cpp",
                 "-o",
                 "${workspaceFolder}/build/EncoderFactory.o"
             ],
@@ -76,8 +63,9 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/library/Encoder_ffmpeg.cpp",
+                "${workspaceFolder}/src/Encoder_ffmpeg.cpp",
                 "-o",
                 "${workspaceFolder}/build/Encoder_ffmpeg.o"
             ],
@@ -89,8 +77,9 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/library/Encoder_Handbrake.cpp",
+                "${workspaceFolder}/src/Encoder_Handbrake.cpp",
                 "-o",
                 "${workspaceFolder}/build/Encoder_Handbrake.o"
             ],
@@ -136,6 +125,35 @@
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Build All",
+            "dependsOn": [
+                "Compile logger object",
+                "Compile configuration object",
+                "Compile utilities object",
+                "Compile EncoderFactory object",
+                "Compile Encoder_ffmpeg object",
+                "Compile Encoder_Handbrake object",
+                "Create Static Library",
+                "Build Main Program"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/build/*",
+                "${workspaceFolder}/bin/*"
+            ],
+            "group": "build",
+            "problemMatcher": []
         }
     ]
 }

@@ -1,9 +1,9 @@
 // /home/davidle/projects/c/EncoderFactory.cpp
-#include "EncoderFactory.h"
 #include <filesystem> // Required for std::filesystem
 #include <iostream>
 #include <cstdlib> // For system()
 
+#include "EncoderFactory.h"
 #include "utilities.h"
 //#include "./library/logger.h"
 

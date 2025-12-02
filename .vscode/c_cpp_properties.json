@@ -4,13 +4,18 @@
         {
             "name": "Linux",
             "includePath": [
+                "${workspaceFolder}/include",
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/library"  // Adjust the path as needed
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/library"
             ],
-            "compilerPath": "/usr/bin/g++",  // Path to your compiler, change if necessary
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "linux-gcc-x64",
+            "defines": [
+                "VERSION=1"
+            ]
         }
     ]
 }
