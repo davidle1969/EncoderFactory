@@ -158,6 +158,42 @@ string execute_command(const string& command)
     return result;
 }
 
+string extractValue(const std::string& str, const std::string& key) 
+{
+    size_t start_pos = str.find(key);
+
+    if (start_pos == std::string::npos) {
+        // If the prefix is not found, return an empty string or handle as necessary
+        return ""; 
+    }
+
+    start_pos += key.length(); // Move to the start of the codec string
+    size_t end_pos = str.find_first_of(" \n\t", start_pos); // Find end position (space, newline, or tab)
+
+    // If no space is found, use the entire remaining string
+    if (end_pos == std::string::npos) {
+        end_pos = str.length(); // use the length of the string
+    }
+
+    // Extract the substring which is the codec
+    return str.substr(start_pos, end_pos - start_pos);
+}
+
+
+int32_t convertTimeToSeconds(const std::string& timeStr) 
+{
+    std::istringstream ss(timeStr);
+    int hours, minutes, seconds;
+
+    // Split the input string based on ':' and parse into hours, minutes, seconds
+    char delimiter;
+    ss >> hours >> delimiter >> minutes >> delimiter >> seconds;
+
+    // Calculate total seconds
+    return hours * 3600 + minutes * 60 + seconds;
+}
+
+
 
 int move_file(const string& src_file, const string& dest_path) 
 {

@@ -9,6 +9,9 @@
                 "Compile configuration object",
                 "Compile utilities object",
                 "Compile EncoderFactory object",
+                "Compile EncoderFactory object",
+                "Compile Encoder_ffmpeg object",
+                "Compile Encoder_Handbrake object",
                 "Create Static Library",
                 "Build Main Program"
             ],
@@ -70,6 +73,32 @@
             "problemMatcher": ["$gcc"]
         },
 		{
+            "label": "Compile Encoder_ffmpeg object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c",
+                "${workspaceFolder}/library/Encoder_ffmpeg.cpp",
+                "-o",
+                "${workspaceFolder}/library/Encoder_ffmpeg.o"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Compile Encoder_Handbrake object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c",
+                "${workspaceFolder}/library/Encoder_Handbrake.cpp",
+                "-o",
+                "${workspaceFolder}/library/Encoder_Handbrake.o"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+        {
 			"label": "Create Static Library",
 			"type": "shell",
 			"command": "ar",
@@ -79,7 +108,9 @@
 				"${workspaceFolder}/library/logger.o",
 				"${workspaceFolder}/library/configuration.o",
 				"${workspaceFolder}/library/utilities.o",
-				"${workspaceFolder}/library/EncoderFactory.o"
+				"${workspaceFolder}/library/EncoderFactory.o",
+                "${workspaceFolder}/library/Encoder_ffmpeg.o",
+                "${workspaceFolder}/library/Encoder_Handbrake.o"
 			],
 			"group": "build",
 			"problemMatcher": ["$gcc"]

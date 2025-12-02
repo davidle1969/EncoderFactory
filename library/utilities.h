@@ -23,6 +23,9 @@ std::string execute_command(const std::string& command);
 
 int move_file(const std::string& src_file, const std::string& dest);
 int delete_file(const std::string& filename);
+std::string extractValue(const std::string& str, const std::string& key) ;
+int32_t convertTimeToSeconds(const std::string& timeStr); 
+
 
 
 #endif // UTILITIES_H
