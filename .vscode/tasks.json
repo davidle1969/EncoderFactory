@@ -1,0 +1,111 @@
+
+{
+    "version": "2.0.0",
+    "tasks": [
+		{
+            "label": "Build All",
+            "dependsOn": [
+                "Compile logger object",
+                "Compile configuration object",
+                "Compile utilities object",
+                "Compile EncoderFactory object",
+                "Create Static Library",
+                "Build Main Program"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+		{
+            "label": "Compile logger object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c",
+                "${workspaceFolder}/library/logger.cpp",
+                "-o",
+                "${workspaceFolder}/library/logger.o"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+		{
+            "label": "Compile configuration object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c",
+                "${workspaceFolder}/library/configuration.cpp",
+                "-o",
+                "${workspaceFolder}/library/configuration.o"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+		{
+            "label": "Compile utilities object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c",
+                "${workspaceFolder}/library/utilities.cpp",
+                "-o",
+                "${workspaceFolder}/library/utilities.o"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+		{
+            "label": "Compile EncoderFactory object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c",
+                "${workspaceFolder}/library/EncoderFactory.cpp",
+                "-o",
+                "${workspaceFolder}/library/EncoderFactory.o"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+		{
+			"label": "Create Static Library",
+			"type": "shell",
+			"command": "ar",
+			"args": [
+				"rcs",
+				"${workspaceFolder}/library/libencoder_utilities.a",
+				"${workspaceFolder}/library/logger.o",
+				"${workspaceFolder}/library/configuration.o",
+				"${workspaceFolder}/library/utilities.o",
+				"${workspaceFolder}/library/EncoderFactory.o"
+			],
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		},
+        {
+            "label": "Build Main Program",
+            "type": "shell",
+            "command": "g++",  // Change this if using a different compiler
+            "args": [
+                "-g",  // Include debug inf
+				// o
+                "${workspaceFolder}/*.cpp",  // Specify your source files
+                "-o",
+                "${workspaceFolder}/test",  // Adjust to your desired output file name
+				"-L${workspaceFolder}/library",  // Path to your library if it's in a specific folder
+				"-L/usr/local/lib",
+				"-I/usr/local/include",
+				"-l:libencoder_utilities.a",  // Name of your library without the prefix (e.g., 'lib' or '.a')
+				"-lyaml-cpp"
+
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}

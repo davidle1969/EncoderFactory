@@ -1,0 +1,20 @@
+# lib/Makefile
+CC = g++
+CFLAGS = -Wall -fPIC
+AR = ar rcs
+
+TARGET = encoder_utilities.a
+SRCS = configuration.cpp utilities.cpp
+OBJS = $(SRCS:.cpp=.o)
+INCLUDES = -I
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS) logger.cpp
+	$(AR) $@ $(OBJS)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -f $(OBJS) $(TARGET)

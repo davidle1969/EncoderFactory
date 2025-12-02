@@ -1,0 +1,25 @@
+source_path: "/mnt/media/Temp/complete/"
+dest_path: "/mnt/media/Temp/working/"
+staging_path: "/mnt/media/Temp/Staging/"
+trash_path: "/mnt/media/Temp/Staging/trash/"
+handbrake_path: "/mnt/media3/Multimedia/decoder/HandBrake/build/"
+ffmpeg_path: ""
+
+# Optional values can be commented out
+# bitrate: 1000
+# src_bitrate: 900
+# maxrate: 1500
+# bufsize: 3000
+# extensions_array: [""]
+encoder: "vaapi"
+codec: "h264"
+preset: ""
+encoder_type: "ffmpeg"
+# audio_encode: "-c:a aac -q:a 100"
+multi_pass: 0
+CRF: 34
+addon: ""
+max_size: 0
+consolidate: 0
+error_logging: 0
+# scale: "w=854:h=480"
