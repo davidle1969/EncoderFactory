@@ -4,6 +4,9 @@
 #include <cstdlib> // For system()
 
 #include "EncoderFactory.h"
+#include "Encoder_ffmpeg.h"
+#include "Encoder_Handbrake.h"
+
 #include "utilities.h"
 //#include "./library/logger.h"
 
@@ -19,6 +22,30 @@ EncoderFactory::EncoderFactory()// : config(encode_data)
 EncoderFactory::~EncoderFactory()
 {}
 
+EncoderBase* EncoderFactory::getEncoder()
+{
+	EncoderBase* encoder = nullptr;
+
+	if (encode_data.encoder_type == "ffmpeg")
+	{
+		encoder = new Encoder_ffmpeg();
+	}
+	else if (encode_data.encoder_type == "handbrake")
+	{
+		encoder = new Encoder_Handbrake();
+	}
+	else
+	{
+		log(ERROR, "getEncoder: Unsupported encoder type: " + encode_data.encoder_type);
+	}
+
+	if (encoder)
+	{
+		encoder->set_encode_data(encode_data);
+	}
+
+	return encoder;
+}
 
 int EncoderFactory::process(const char* config_file)
 {
@@ -33,16 +60,24 @@ int EncoderFactory::process(const char* config_file)
         return -1;
     }
 
-	if (encode_data.consolidate == 0 )
-		process();
-	else
-		process_consolidated(encode_data.source_path);
-	
+	EncoderBase* encoder = getEncoder();
+	int result = 0;
+
+	if (encoder)
+	{
+		if (encode_data.consolidate == 0 )
+			result = encoder->process();
+		else
+			result = encoder->process_consolidated(encode_data.source_path);
+
+		delete encoder;
+	}
+
 	log (INFO, "FINISH");
-  //  closelogfile();
     return 0;
 }
 
+/*
 
 int EncoderFactory::process()
 {
@@ -131,13 +166,13 @@ int EncoderFactory::process_file(const string& _item, const string& _sourcepath)
 					
 				bFound = false;
 				
-/*                for element in "${extensions_array[@]}"; do
+                for element in "${extensions_array[@]}"; do
 					if [[ "$element" == "$file_extension" ]]; then
 						found=1
 						break
 					fi
 				done
-*/
+
 				if (src_size > encode_data.max_size || bFound) 
                 {
 				    bitrate = get_bitrate(item.string(), src_size);
@@ -776,6 +811,6 @@ string EncoderFactory::add_error_logging()
 }
 
 
-
+*/
 
 

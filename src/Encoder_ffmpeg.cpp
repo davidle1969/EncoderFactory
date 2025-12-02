@@ -22,11 +22,6 @@ Encoder_ffmpeg::~Encoder_ffmpeg()
 }
 
 
-void Encoder_ffmpeg::set_encode_data(encode_struct& _encode_data) 
-{
-    encode_data = &_encode_data;
-}
-
 
 int Encoder_ffmpeg::encode_video(const string& input_file, const string& output_video, int32_t bitrate, int32_t audio_bitrate, int32_t multi_file)
 {
@@ -87,18 +82,6 @@ void Encoder_ffmpeg::init_suffix()
 
 		log (INFO,  "init_suffix: " + suffix_string);
 	}
-}
-
-void Encoder_ffmpeg::init_decode()
-{
-	encode_data->decode_string = add_decode_setting("");
-	log (INFO,  "init_decode: " + encode_data->decode_string);
-}
-
-void Encoder_ffmpeg::init_encode()
-{
-	encode_data->encode_string = add_encode_setting() + add_encoder() + add_CRF() + add_maxrate() + add_bufsize() + add_preset() + add_audio_encode();
-	log (INFO,  "init_encode: " + encode_data->encode_string);
 }
 
 string Encoder_ffmpeg::add_decode_setting(string input_file)
@@ -165,9 +148,9 @@ string Encoder_ffmpeg::add_encode_setting()
 {
     if (encode_data->encoder == "vaapi" )
         if ( !encode_data->scale.empty() )
-            return "-vf 'format=nv12,hwupload,scale_vaapi=" + encode_data->scale + "'";
+            return "-vf 'format=nv12,hwupload,scale_vaapi=" + encode_data->scale + "' ";
         else
-            return "-vf 'format=nv12,hwupload'";
+            return "-vf 'format=nv12,hwupload' ";
 
     return string("");
 }
@@ -198,13 +181,13 @@ string Encoder_ffmpeg::add_CRF()
 	if ( !encode_data->crf_string.empty() )
     {
 			if (encode_data->encoder == "qsv" || encode_data->encoder == "vaapi" )
-				return "-global_quality:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50";
+				return "-global_quality:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50 ";
 			else
 			{
 					if  (encode_data->codec == "libx264" || encode_data->codec == "libx265" )
                             return "-crf:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50";
 					else
-						return "-rc:v vbr -cq:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50";
+						return "-rc:v vbr -cq:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50 ";
             }
     }
     return "";
@@ -213,14 +196,14 @@ string Encoder_ffmpeg::add_CRF()
 string Encoder_ffmpeg::add_maxrate()
 {
 	if (encode_data->maxrate != "" )
-		return "-maxrate " + encode_data->maxrate + "k";
+		return "-maxrate " + encode_data->maxrate + "k ";
 	return "";
 }
 
 string Encoder_ffmpeg::add_bufsize()
 {
 	if (encode_data->bufsize != "" )
-		return "-bufsize " + encode_data->bufsize + "k";
+		return "-bufsize " + encode_data->bufsize + "k ";
 	return "";
 }
 
@@ -228,7 +211,7 @@ string Encoder_ffmpeg::add_preset()
 {
 	if (encode_data->preset != "" )
     {
-		return "-preset " + encode_data->preset;
+		return "-preset " + encode_data->preset + " ";
 	}
 	return "";
 }
@@ -238,7 +221,7 @@ string Encoder_ffmpeg::add_audio_encode()
     if ( !encode_data->audio_encode.empty() )
 		return encode_data->audio_encode;
 	else
-		return "-c:a copy";
+		return "-c:a copy ";
 	
     return "";
 }
@@ -246,7 +229,7 @@ string Encoder_ffmpeg::add_audio_encode()
 string Encoder_ffmpeg::add_scale()
 {
 	if (encode_data->scale != "")
-   		return "-vf \"scale=" + encode_data->scale + "\"";
+   		return "-vf \"scale=" + encode_data->scale + "\" ";
 
     return "";
 
@@ -262,7 +245,7 @@ string Encoder_ffmpeg::add_bitrate(const int32_t& bitrate)
 {
 	if ( bitrate != 0)
     {
-		return "-b:v " + to_string(bitrate) + "k";
+		return "-b:v " + to_string(bitrate) + "k ";
     }
     return "";
 }
@@ -327,7 +310,7 @@ string Encoder_ffmpeg::add_audio_bitrate(const int32_t& bitrate)
 {
 	if ( bitrate != 0)
     {
-		return "-b:a " + to_string(bitrate) + "k";
+		return "-b:a " + to_string(bitrate) + "k ";
 	}
 	return "";
 }
@@ -395,7 +378,7 @@ string Encoder_ffmpeg::add_error_logging()
 	string error = "";
 	
 	if (encode_data->error_logging > 0 ) 
-        error="-xerror -loglevel info";
+        error="-xerror -loglevel info ";
 	
     return error;
 }

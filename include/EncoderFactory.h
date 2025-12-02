@@ -1,6 +1,7 @@
 #ifndef ENCODERFACTORY_H
 #define ENCODERFACTORY_H
 
+#include "EncoderBase.h"
 #include "configuration.h"
 #include "logger.h"
 #include <string>
@@ -12,7 +13,9 @@ public:
     ~EncoderFactory();
 
     int process(const char* config_file);
-    int process();
+    EncoderBase* getEncoder();
+
+/*    int process();
     int process_directory(const string& item);
     int process_file(const string& item, const string& _sourcepath);
  
@@ -22,6 +25,7 @@ public:
     int process_into_single_file(const string& sourcePath);
     int process_consolidated(const string& _sourcePath);
 
+ 
     void init_suffix();
     void init_decode();
     void init_encode();
@@ -47,7 +51,7 @@ public:
 
     bool check_addon(const string& file);
     string add_error_logging();
-
+*/
     
  //   string get_addon_string() const { return addon_string; }
 

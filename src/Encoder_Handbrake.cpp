@@ -12,7 +12,7 @@ using namespace std;
 
 Encoder_Handbrake::Encoder_Handbrake()
 {
-
+	encode_data = NULL;
 }
 
 Encoder_Handbrake::~Encoder_Handbrake()
@@ -34,32 +34,9 @@ int Encoder_Handbrake::encode_video(const string& input_file, const string& outp
 	}
 	string command;	
     int result = 0;
-	if (encode_data->encoder_type == "ffmpeg") 
-    {
-		if ( encode_data->multi_pass == "1" )
-        {
-			command = encode_data->ffmpeg_path+"ffmpeg "+ add_error_logging() + add_decode_setting(input_file) + "-i \"" + input_file + "\" " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " -pass 1 -vsync cfr -f null /dev/null";
-			log (INFO, "encode_video: Executing " + command);
-			result = system (command.c_str());
-			command = encode_data->ffmpeg_path+"ffmpeg "+ add_error_logging() + add_decode_setting(input_file) + "-i \"" + input_file + "\" " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " -pass 2 " + add_audio_encode() + " \"" + output_video + "\"";
-			log (INFO, "encode_video: Executing " + command);
-			result = system (command.c_str());
-        }
-		else
-		{
-            command = encode_data->ffmpeg_path+"ffmpeg "+ add_error_logging() + add_decode_setting(input_file) + add_concat(multi_file) + "-i \"" + input_file + "\" " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " \"" + output_video + "\"";
-			log (INFO, "encode_video: Executing " + command);
-			
-			result = system (command.c_str());
-			
-        }
-    }
-	else
-    {
-		command = encode_data->handbrake_path+"HandBrakeCLI -i \"" + input_file + "\" -o \"" + output_video + "\" " + add_decode_setting(input_file) + " " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " " + add_multi_pass();
-		log (INFO, "encode_video: Executing " + command);
-		result = system (command.c_str());
-    }
+	command = encode_data->handbrake_path+"HandBrakeCLI -i \"" + input_file + "\" -o \"" + output_video + "\" " + add_decode_setting(input_file) + encode_data->encode_string + " " + add_bitrate(bitrate) + add_audio_bitrate(audio_bitrate) + add_multi_pass();
+	log (INFO, "encode_video: Executing " + command);
+	result = system (command.c_str());
 	int output = WEXITSTATUS(result);
 	if (output != 0) {
 		log (ERROR, "encode_video:  " + output_video + " encountered an ERROR with exit code " + std::to_string(output));
@@ -88,18 +65,6 @@ void Encoder_Handbrake::init_suffix()
 
 		log (INFO,  "init_suffix: " + suffix_string);
 	}
-}
-
-void Encoder_Handbrake::init_decode()
-{
-	encode_data->decode_string= add_decode_setting("");
-	log (INFO,  "init_decode: " + encode_data->decode_string);
-}
-
-void Encoder_Handbrake::init_encode()
-{
-	encode_data->encode_string = add_encode_setting() + add_encoder() + add_CRF() + add_maxrate() + add_bufsize() + add_preset() + add_audio_encode();
-	log (INFO,  "init_encode: " + encode_data->encode_string);
 }
 
 string Encoder_Handbrake::add_decode_setting(string input_file)
@@ -160,7 +125,7 @@ string Encoder_Handbrake::add_encoder()
 string Encoder_Handbrake::add_CRF()
 {
 	if ( encode_data->crf_string != "" )
-		return "-q:v "+ encode_data->crf_string;
+		return "-q:v "+ encode_data->crf_string + " ";
 
     return "";
 }	
@@ -168,14 +133,14 @@ string Encoder_Handbrake::add_CRF()
 string Encoder_Handbrake::add_maxrate()
 {
 	if ( !encode_data->maxrate.empty() )
-	    return "--maxBitrate " + encode_data->maxrate;
+	    return "--maxBitrate " + encode_data->maxrate + " ";
 	return "";
 }
 
 string Encoder_Handbrake::add_bufsize()
 {
 	if (!encode_data->bufsize.empty() )
-		return "--vbv-bufsize " + encode_data->bufsize;
+		return "--vbv-bufsize " + encode_data->bufsize + " ";
 	return "";
 }
 
@@ -183,7 +148,7 @@ string Encoder_Handbrake::add_preset()
 {
 	if (!encode_data->preset.empty() )
     {
-		return "--preset \"" + encode_data->preset + "\""; 
+		return "--preset \"" + encode_data->preset + "\" "; 
 	}
 	return "";
 }
@@ -193,13 +158,13 @@ string Encoder_Handbrake::add_audio_encode()
     if (!encode_data->audio_encode.empty())
 		return encode_data->audio_encode;
 
-	return "-E copy –audio-copy-mask ac3,dts,dtshd –audio-fallback ffac3";
+	return "-E copy –audio-copy-mask ac3,dts,dtshd –audio-fallback ffac3 ";
 }
 
 string Encoder_Handbrake::add_scale()
 {
 	if (encode_data->scale != "")
-   		return "-vf \"scale=" + encode_data->scale + "\"";
+   		return "-vf \"scale=" + encode_data->scale + "\" ";
 
     return "";
 
@@ -208,7 +173,7 @@ string Encoder_Handbrake::add_scale()
 string Encoder_Handbrake::add_multi_pass()
 {
     if (!encode_data->multi_pass.empty())
-		return "--multi-pass";
+		return "--multi-pass ";
     return "";
 }
 
@@ -217,7 +182,7 @@ string Encoder_Handbrake::add_bitrate(const int32_t& bitrate)
 {
 	if ( bitrate != 0)
     {
-		return "--vb " + to_string(bitrate) + "k";
+		return "--vb " + to_string(bitrate) + "k ";
     }
     return "";
 }
@@ -350,7 +315,7 @@ string Encoder_Handbrake::add_error_logging()
 	string error = "";
 	
 	if (encode_data->error_logging > 0 ) 
-        error="-xerror -loglevel info";
+        error="-xerror -loglevel info ";
 	
     return error;
 }

@@ -15,21 +15,7 @@
             ],
             "group": "build",
             "problemMatcher": ["$gcc"]
-        },
-		{
-            "label": "Compile configuration object",
-            "type": "shell",
-            "command": "g++",
-            "args": [
-                "-I${workspaceFolder}/include",
-                "-c",
-                "${workspaceFolder}/src/configuration.cpp",
-                "-o",
-                "${workspaceFolder}/build/configuration.o"
-            ],
-            "group": "build",
-            "problemMatcher": ["$gcc"]
-        },
+        },		
 		{
             "label": "Compile utilities object",
             "type": "shell",
@@ -41,20 +27,37 @@
                 "-o",
                 "${workspaceFolder}/build/utilities.o"
             ],
+            "dependsOn": ["Compile logger object"],
             "group": "build",
             "problemMatcher": ["$gcc"]
         },
-		{
-            "label": "Compile EncoderFactory object",
+        {
+            "label": "Compile configuration object",
             "type": "shell",
             "command": "g++",
             "args": [
                 "-I${workspaceFolder}/include",
                 "-c",
-                "${workspaceFolder}/src/EncoderFactory.cpp",
+                "${workspaceFolder}/src/configuration.cpp",
                 "-o",
-                "${workspaceFolder}/build/EncoderFactory.o"
+                "${workspaceFolder}/build/configuration.o"
             ],
+            "dependsOn": ["Compile utilities object"],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },		
+        {
+            "label": "Compile EncoderBase object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-I${workspaceFolder}/include",
+                "-c",
+                "${workspaceFolder}/src/EncoderBase.cpp",
+                "-o",
+                "${workspaceFolder}/build/EncoderBase.o"
+            ],
+            "dependsOn": ["Compile configuration object"],
             "group": "build",
             "problemMatcher": ["$gcc"]
         },
@@ -69,6 +72,7 @@
                 "-o",
                 "${workspaceFolder}/build/Encoder_ffmpeg.o"
             ],
+            "dependsOn": ["Compile EncoderBase object"],
             "group": "build",
             "problemMatcher": ["$gcc"]
         },
@@ -83,6 +87,22 @@
                 "-o",
                 "${workspaceFolder}/build/Encoder_Handbrake.o"
             ],
+            "dependsOn": ["Compile Encoder_ffmpeg object"],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Compile EncoderFactory object",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-I${workspaceFolder}/include",
+                "-c",
+                "${workspaceFolder}/src/EncoderFactory.cpp",
+                "-o",
+                "${workspaceFolder}/build/EncoderFactory.o"
+            ],
+            "dependsOn": ["Compile Encoder_Handbrake object"],
             "group": "build",
             "problemMatcher": ["$gcc"]
         },
@@ -95,11 +115,13 @@
 				"${workspaceFolder}/build/libencoder_utilities.a",
 				"${workspaceFolder}/build/logger.o",
 				"${workspaceFolder}/build/configuration.o",
-				"${workspaceFolder}/build/utilities.o",
-				"${workspaceFolder}/build/EncoderFactory.o",
+				"${workspaceFolder}/build/utilities.o",				
+                "${workspaceFolder}/build/EncoderBase.o",
                 "${workspaceFolder}/build/Encoder_ffmpeg.o",
-                "${workspaceFolder}/build/Encoder_Handbrake.o"
+                "${workspaceFolder}/build/Encoder_Handbrake.o",
+                "${workspaceFolder}/build/EncoderFactory.o"
 			],
+            "dependsOn": ["Compile EncoderFactory object"],
 			"group": "build",
 			"problemMatcher": ["$gcc"]
 		},
@@ -120,6 +142,7 @@
 				"-lyaml-cpp"
 
             ],
+            "dependsOn": ["Create Static Library"],
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -131,10 +154,11 @@
             "dependsOn": [
                 "Compile logger object",
                 "Compile configuration object",
-                "Compile utilities object",
-                "Compile EncoderFactory object",
+                "Compile utilities object",                
+                "Compile EncoderBase object",
                 "Compile Encoder_ffmpeg object",
                 "Compile Encoder_Handbrake object",
+                "Compile EncoderFactory object",
                 "Create Static Library",
                 "Build Main Program"
             ],
