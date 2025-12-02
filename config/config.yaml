@@ -11,13 +11,13 @@ ffmpeg_path: ""
 # maxrate: 1500
 # bufsize: 3000
 # extensions_array: [""]
-encoder: "vaapi"
+# encoder: "vaapi"
 codec: "h264"
 preset: ""
 encoder_type: "ffmpeg"
 # audio_encode: "-c:a aac -q:a 100"
 multi_pass: 0
-CRF: 34
+crf: 34
 addon: ""
 max_size: 0
 consolidate: 0

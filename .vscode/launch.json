@@ -5,7 +5,7 @@
             "name": "C++ Debug Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/test",  // Path to your compiled executable
+            "program": "${workspaceFolder}/bin/test",  // Path to your compiled executable
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

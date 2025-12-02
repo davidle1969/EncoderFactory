@@ -159,21 +159,21 @@ string Encoder_ffmpeg::add_encoder()
 {
     if (encode_data->encoder == "qsv" || encode_data->encoder == "vaapi" )
     {
-        if( encode_data->codec == "h264" ) return "-c:v h264_" + encode_data->encoder;
-        if( encode_data->codec == "hevc" ) return "-c:v hevc_" + encode_data->encoder;
-        if( encode_data->codec == "h265" ) return "-c:v hevc_" + encode_data->encoder;
-        if( encode_data->codec == "av1" ) return "-c:v av1_" + encode_data->encoder;
+        if( encode_data->codec == "h264" ) return "-c:v h264_" + encode_data->encoder + " ";
+        if( encode_data->codec == "hevc" ) return "-c:v hevc_" + encode_data->encoder + " ";
+        if( encode_data->codec == "h265" ) return "-c:v hevc_" + encode_data->encoder + " ";
+        if( encode_data->codec == "av1" ) return "-c:v av1_" + encode_data->encoder + " ";
         return "-c:v " + encode_data->codec;
     }
     else if (encode_data->encoder == "nvenc" )
     {
-        if( encode_data->codec == "h264" ) return "-c:v h264_" + encode_data->encoder;
-        if( encode_data->codec == "hevc" ) return "-c:v hevc_" + encode_data->encoder;
-        if( encode_data->codec == "h265" ) return "-c:v hevc_" + encode_data->encoder;
-        return "-c:v " + encode_data->codec;
+        if( encode_data->codec == "h264" ) return "-c:v h264_" + encode_data->encoder + " ";
+        if( encode_data->codec == "hevc" ) return "-c:v hevc_" + encode_data->encoder + " ";
+        if( encode_data->codec == "h265" ) return "-c:v hevc_" + encode_data->encoder + " ";
+        return "-c:v " + encode_data->codec + " ";
     }
     else
-        return "-c:v " + encode_data->codec;
+        return "-c:v " + encode_data->codec + " ";
 }
 
 string Encoder_ffmpeg::add_CRF()
