@@ -21,7 +21,7 @@ Encoder_Handbrake::~Encoder_Handbrake()
 }
 
 
-int Encoder_Handbrake::encode_video(const string& input_file, const string& output_video, int32_t bitrate, int32_t audio_bitrate, int32_t multi_file)
+bool Encoder_Handbrake::encode_video(const string& input_file, const string& output_video, int64_t bitrate, int64_t audio_bitrate, int64_t multi_file)
 {
 	//Nvidia cannot decode av1 videos
 	if ( multi_file == 0 ) 
@@ -29,7 +29,7 @@ int Encoder_Handbrake::encode_video(const string& input_file, const string& outp
 		if (encode_data->encoder == "nvenc" && get_decode_codec(input_file) == "av1") 
         {
 			log (INFO, "encode_video: " + input_file + " NVIDIA does not support decoding av1");
-			return 1;
+			return false;
 		}
 	}
 	string command;	
@@ -40,10 +40,10 @@ int Encoder_Handbrake::encode_video(const string& input_file, const string& outp
 	int output = WEXITSTATUS(result);
 	if (output != 0) {
 		log (ERROR, "encode_video:  " + output_video + " encountered an ERROR with exit code " + std::to_string(output));
-		return 1;
+		return false;
 	}
 	
-	return 0;
+	return true;
 }
 
 void Encoder_Handbrake::init_suffix()
@@ -178,7 +178,7 @@ string Encoder_Handbrake::add_multi_pass()
 }
 
 
-string Encoder_Handbrake::add_bitrate(const int32_t& bitrate)
+string Encoder_Handbrake::add_bitrate(const int64_t& bitrate)
 {
 	if ( bitrate != 0)
     {
@@ -187,10 +187,10 @@ string Encoder_Handbrake::add_bitrate(const int32_t& bitrate)
     return "";
 }
 
-int32_t Encoder_Handbrake::get_bitrate(string input, int32_t file_size)
+int64_t Encoder_Handbrake::get_bitrate(string input, int64_t file_size, int64_t conf_bitrate)
 {
-	int32_t bitrate = 0;
-	if (encode_data->bitrate > 0)
+	int64_t bitrate = 0;
+	if (conf_bitrate > 0)
     {
 		//string command = "(ffmpeg -i " + input + " 2>&1 | grep \"bitrate:\")";
         string command = "HandBrakeCLI -i " + input + " --scan";
@@ -204,7 +204,7 @@ int32_t Encoder_Handbrake::get_bitrate(string input, int32_t file_size)
         if ( bitrate_awk != "" )
         {
             log( INFO, "get_bitrate:  bitrate_awk0 " + bitrate_awk);
-            int32_t value = stoi(bitrate_awk);
+            int64_t value = stoi(bitrate_awk);
             bitrate = value * 1024;
 
             log( INFO, "get_bitrate:  bitrate_awk " + to_string(bitrate));
@@ -220,41 +220,41 @@ int32_t Encoder_Handbrake::get_bitrate(string input, int32_t file_size)
             
             log (INFO, duration  + " " + to_string(file_size));
 
-            int32_t duration_value = convertTimeToSeconds(duration);
+            int64_t duration_value = convertTimeToSeconds(duration);
 
  			if (duration_value != 0 )
             {
-                //int32_t value = stoi(encode_data->src_bitrate);
+                //int64_t value = stoi(encode_data->src_bitrate);
                 bitrate = file_size / duration_value;
             }
 			else
-				bitrate = encode_data->bitrate;
+				bitrate = conf_bitrate;
         }
 
         bitrate = bitrate/1024;
         
         if ( bitrate > 0 )
         {
-            if ( bitrate > encode_data->bitrate )
-                bitrate = encode_data->bitrate;
+            if ( bitrate > conf_bitrate )
+                bitrate = conf_bitrate;
         }
         else
-            bitrate = encode_data->bitrate;
+            bitrate = conf_bitrate;
     }
         
     return bitrate;				
 }
 
 
-string Encoder_Handbrake::add_audio_bitrate(const int32_t& bitrate)
+string Encoder_Handbrake::add_audio_bitrate(const int64_t& bitrate)
 {
 	return "";
 }
 
 
-int32_t Encoder_Handbrake::get_audio_bitrate(const string& input_file)
+int64_t Encoder_Handbrake::get_audio_bitrate(const string& input_file)
 {
-	int32_t bitrate = 0;
+	int64_t bitrate = 0;
 	if (encode_data->audio_bitrate > 0)
     {
 
@@ -264,7 +264,7 @@ int32_t Encoder_Handbrake::get_audio_bitrate(const string& input_file)
 		log(INFO, "get_audio_bitrate:  output " + output);
 
 		command = "(echo \"" + output + "\" | awk -F', ' '/Audio:/ {print $NF}' | awk '{print $(NF-1)}')";
-		int32_t bitrate_awk = atoi(execute_command(command).c_str());
+		int64_t bitrate_awk = atoi(execute_command(command).c_str());
 		
 		log(INFO, "get_audio_bitrate:  bitrate_awk " + bitrate_awk);
 		
@@ -280,7 +280,7 @@ int32_t Encoder_Handbrake::get_audio_bitrate(const string& input_file)
     return bitrate;
 }
 
-bool Encoder_Handbrake::check_addon(const string& file)
+/*bool Encoder_Handbrake::check_addon(const string& file)
 {
 	if( encode_data->check_addon_string.empty() )
 	{		
@@ -309,6 +309,8 @@ bool Encoder_Handbrake::check_addon(const string& file)
     
     return false;
 }
+*/
+//HandBrakeCLI --input input_video.mp4 --info | grep "resolution" | awk -F '[x]' '{print $1 "\n" $2}'
 
 string Encoder_Handbrake::add_error_logging()
 {

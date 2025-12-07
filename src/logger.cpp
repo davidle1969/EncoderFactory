@@ -15,6 +15,8 @@
 
 using namespace std;
 
+int _logLevel = 0;
+
 //static ofstream outfile;
 /*
 int openlogfile()
@@ -41,17 +43,29 @@ int closelogfile()
 */
 int log(int nlevel, string sMessage)
 {
+    if(nlevel < _logLevel)
+    {
+        return 0;
+    }
     return log(nlevel, sMessage.c_str());
 }
 
 int log(int nlevel, const char* sMessage, string sValue)
 {
+    if(nlevel < _logLevel)
+    {
+        return 0;
+    }
     return log(nlevel, sMessage, sValue.c_str());
 }
 
 
 int log(int nlevel, const char* sMessage, const char* sValue)
 {
+    if(nlevel < _logLevel)
+    {
+        return 0;
+    }
     char buffer[1024];
     snprintf(buffer, 1024, "%s %s\n", sMessage, sValue);
     return log(nlevel, buffer);
@@ -59,6 +73,10 @@ int log(int nlevel, const char* sMessage, const char* sValue)
 
 int log(int nlevel, const char* sMessage, int value)
 {
+    if(nlevel < _logLevel)
+    {
+        return 0;
+    }
     char buffer[1024];
     snprintf(buffer, 1024, "%s %d\n", sMessage, value);
     return log(nlevel, buffer);
@@ -67,11 +85,19 @@ int log(int nlevel, const char* sMessage, int value)
 
 int log(int nlevel, const char* sMessage)
 {
+    if(nlevel < _logLevel)
+    {
+        return 0;
+    }
+
  	string level_string = "UNKNOWN";
 
     // Map numeric log level to string
     switch (nlevel)
     {
+        case DEBUG:
+            level_string="DEBUG";
+            break;
         case INFO:
             level_string="INFO";
             break;
@@ -103,7 +129,7 @@ int log(int nlevel, const char* sMessage)
             return -1;
         }
 
-        outfile << buffer << std::endl;
+        outfile << buffer;
     }
     return 0;
 
@@ -118,5 +144,15 @@ string get_current_timestamp()
     return std::string(buffer);
 
 }
+
+void setLogLevel(int level)
+{
+   _logLevel = level;
+}
+int getLogLevel()
+{
+    return _logLevel;
+}
+
 
 

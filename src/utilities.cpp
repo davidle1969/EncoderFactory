@@ -23,7 +23,7 @@ int touch_file(const string& filepath)
     ofstream file(filepath);
     if (!file.is_open())
     {
-        log(ERROR, "Failed to touch file: " + filepath);
+        log(DEBUG, "Failed to touch file: " + filepath);
         return -1;
     }
     file.close();
@@ -35,7 +35,7 @@ int append_to_file(const string& filepath, const string& content)
     ofstream file(filepath, ios::app);
     if (!file.is_open())
     {
-        log(ERROR, "Failed to append to file: " + filepath);
+        log(DEBUG, "Failed to append to file: " + filepath);
         return -1;
     }
     file << content;
@@ -56,14 +56,14 @@ bool pathExists(const fs::path filePath)
     // 1. Check if the file exists
     if (!fs::exists(filePath)) 
     {
-        log(ERROR, "path does not exist: " + filePath.string());
+//        log(DEBUG, "path does not exist: " + filePath.string());
         return false;
     }
 
     // 2. Check if it's a regular file (not a directory, etc.)
     if (!fs::is_directory(filePath)) 
     {
-        log(ERROR, "Path is not a regular directory: " + filePath.string());
+//        log(DEBUG, "Path is not a regular directory: " + filePath.string());
         return false;
     }
     return true; // Path exists and is a directory
@@ -82,35 +82,57 @@ bool fileExists(const fs::path& filePath, bool checkSize)
      // 1. Check if the file exists
     if (!fs::exists(filePath)) 
     {
-        log(ERROR, "File does not exist: " + filePath.string());
+//        log(DEBUG, "File does not exist: " + filePath.string());
         return false;
     }
 
     // 2. Check if it's a regular file (not a directory, etc.)
     if (!fs::is_regular_file(filePath)) 
     {
-        log(ERROR, "File is not a regular file: " + filePath.string());
+//        log(DEBUG, "File is not a regular file: " + filePath.string());
         return false;
     }
 
     // 3. Check if the file is empty
     if (checkSize && fs::file_size(filePath) == 0) 
     {
-        log(ERROR, "File exists but is empty: " + filePath.string());
+//        log(DEBUG, "File exists but is empty: " + filePath.string());
         return false;
     }
 
     return true; // File exists and is not empty
 }
 
-
-
-int32_t get_filesize(const string& _file)
+bool is_number(const std::string& s)
 {
-	int32_t size=0;
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
+}
+
+int64_t string_to_long(const std::string& sNumber )
+{
+//    log(DEBUG, "string_to_long: " + sNumber);
+//    char* p;
+
+    return strtol(sNumber.c_str(), NULL, 10);
+
+
+/*    if( is_number(sNumber))
+        return stol(sNumber);
+
+    return 0;
+*/
+}
+
+
+int64_t get_filesize(const string& _file)
+{
+	int64_t size=0;
     fs::path file(_file);
 	if (fs::exists(file) && fs::is_regular_file(file)) {
         size = fs::file_size(file);
+        //log(DEBUG, "get_filesize:  " + _file + " " + to_string(size));
     }
 	return size;
 }
@@ -120,6 +142,8 @@ int32_t get_filesize(const string& _file)
 
 int count_files_in_directory(const string& directoryPath)
 {
+    if( pathExists(directoryPath) == false)
+        return false;
     
     int count = 0;
 
@@ -130,7 +154,7 @@ int count_files_in_directory(const string& directoryPath)
             }
         }
     } catch (const fs::filesystem_error& e) {
-        log(ERROR, "Filesystem error: " + string(e.what()));
+        log(ERROR, "count_files_in_directory: " + string(e.what()));
         return -1;
     }
 
@@ -153,7 +177,7 @@ string execute_command(const string& command)
         }
     }
 
-    log(INFO, "execute_command: " + command + " Result: " + result);
+//    log(DEBUG, "execute_command: " + command + " Result: " + result);
     pclose(pipe);
     return result;
 }
@@ -180,7 +204,7 @@ string extractValue(const std::string& str, const std::string& key)
 }
 
 
-int32_t convertTimeToSeconds(const std::string& timeStr) 
+int64_t convertTimeToSeconds(const std::string& timeStr) 
 {
     std::istringstream ss(timeStr);
     int hours, minutes, seconds;
@@ -206,6 +230,7 @@ int move_file(const string& src_file, const string& dest_path)
         fs::rename(source, destination);
         return 0;  // Indicates success
     } catch (const fs::filesystem_error& e) {
+        log(ERROR, "move_file: " + string(e.what()));
         return -1; // Indicates failure
     }
 }
@@ -215,7 +240,6 @@ int delete_file(const string& filename)
     if( fileExists(filename, false) ) 
         return remove(filename.c_str());
 
-    return -1;
-    
+    return -1;    
 }
 

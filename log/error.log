@@ -22,3 +22,639 @@
 
 [2025-12-02 02:32:04] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.va.h264.mp4 encountered an ERROR with exit code 144
 
+[2025-12-03 02:03:14] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 02:03:14] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.va.h264.mp4
+
+[2025-12-03 02:03:15] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.va.h264.mp4 encountered an ERROR with exit code 234
+
+[2025-12-03 02:03:15] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.va.h264.mp4
+
+[2025-12-03 02:03:15] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.va.h264.mp4
+
+[2025-12-03 02:03:15] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.va.h264.mp4
+
+[2025-12-03 02:03:15] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 02:03:15] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.va.h264.mp4
+
+[2025-12-03 02:03:15] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.va.h264.mp4 encountered an ERROR with exit code 234
+
+[2025-12-03 02:03:15] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.va.h264.mp4
+
+[2025-12-03 02:03:15] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.va.h264.mp4 encountered an ERROR with exit code 234
+
+[2025-12-03 02:05:34] [ERROR]: File does not exist: 
+
+[2025-12-03 02:05:34] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 02:05:34] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:08:09] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:08:09] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:08:09] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:08:09] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 02:08:09] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:08:54] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:11:53] [ERROR]: File does not exist: 
+
+[2025-12-03 02:11:53] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 02:11:53] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:14:29] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:14:29] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:14:29] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:14:29] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 02:14:29] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 02:15:14] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:00:31] [ERROR]: path does not exist: /mnt/media/Temp/complete/
+
+[2025-12-03 12:00:31] [ERROR]: Invalid EncoderFactory. Exiting.
+
+[2025-12-03 12:03:34] [ERROR]: File does not exist: 
+
+[2025-12-03 12:03:34] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 12:03:34] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:35] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 187
+
+[2025-12-03 12:03:35] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:35] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:35] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:35] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:35] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 12:03:35] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:36] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 187
+
+[2025-12-03 12:03:36] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:36] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 12:03:37] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 187
+
+[2025-12-03 12:03:37] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:14:19] [ERROR]: File does not exist: 
+
+[2025-12-03 13:14:19] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 13:14:19] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:16:55] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:16:55] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:16:55] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:16:55] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:16:55] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 13:16:55] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:17:40] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:17:40] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:18:25] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:29:05] [ERROR]: File does not exist: 
+
+[2025-12-03 13:29:05] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 13:29:05] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp4
+
+[2025-12-03 13:29:05] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:31:40] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:31:40] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4
+
+[2025-12-03 13:31:40] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:31:40] [ERROR]: process_file: src_size > max_size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4 -2110438314 <= 0
+
+[2025-12-03 13:31:40] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4
+
+[2025-12-03 13:31:40] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:31:40] [ERROR]: process_file: src_size > max_size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4 -1435096242 <= 0
+
+[2025-12-03 13:31:40] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4
+
+[2025-12-03 13:31:40] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:31:40] [ERROR]: process_file: src_size > max_size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4 -1874546958 <= 0
+
+[2025-12-03 13:31:40] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 13:31:40] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi
+
+[2025-12-03 13:31:40] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:32:26] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:32:26] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi
+
+[2025-12-03 13:32:26] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:33:11] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:38:03] [ERROR]: File does not exist: 
+
+[2025-12-03 13:38:03] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 13:38:03] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp4
+
+[2025-12-03 13:38:03] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:38:03] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp42065722191
+
+[2025-12-03 13:40:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4513849577
+
+[2025-12-03 13:40:38] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:40:38] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4
+
+[2025-12-03 13:40:38] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:40:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4-2110438314
+
+[2025-12-03 13:40:38] [ERROR]: process_file: src_size > max_size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4 -2110438314 <= 0
+
+[2025-12-03 13:40:38] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4
+
+[2025-12-03 13:40:38] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:40:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4-1435096242
+
+[2025-12-03 13:40:38] [ERROR]: process_file: src_size > max_size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4 -1435096242 <= 0
+
+[2025-12-03 13:40:38] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4
+
+[2025-12-03 13:40:38] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:40:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4-1874546958
+
+[2025-12-03 13:40:38] [ERROR]: process_file: src_size > max_size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4 -1874546958 <= 0
+
+[2025-12-03 13:40:38] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 13:40:38] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi
+
+[2025-12-03 13:40:38] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:40:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi736311296
+
+[2025-12-03 13:41:24] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4191762997
+
+[2025-12-03 13:41:24] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:41:24] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi
+
+[2025-12-03 13:41:24] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:41:24] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi733667328
+
+[2025-12-03 13:42:09] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4198800332
+
+[2025-12-03 13:42:09] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:50:19] [ERROR]: File does not exist: 
+
+[2025-12-03 13:50:19] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 13:50:19] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp4
+
+[2025-12-03 13:50:19] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:50:19] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp42065722191
+
+[2025-12-03 13:52:54] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4513849577
+
+[2025-12-03 13:52:54] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:52:54] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4
+
+[2025-12-03 13:52:54] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:52:54] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp42184528982
+
+[2025-12-03 13:55:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4556274602
+
+[2025-12-03 13:55:38] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:55:38] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4
+
+[2025-12-03 13:55:38] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:55:38] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp42859871054
+
+[2025-12-03 13:59:12] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4605017524
+
+[2025-12-03 13:59:12] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:59:12] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4
+
+[2025-12-03 13:59:12] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 13:59:12] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp42420420338
+
+[2025-12-03 14:02:05] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4532903552
+
+[2025-12-03 14:02:05] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:02:05] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 14:02:05] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi
+
+[2025-12-03 14:02:05] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:02:05] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi736311296
+
+[2025-12-03 14:02:50] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4191762997
+
+[2025-12-03 14:02:50] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:02:50] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi
+
+[2025-12-03 14:02:50] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:02:50] [ERROR]: get_filesize:  File size /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi733667328
+
+[2025-12-03 14:03:36] [ERROR]: get_filesize:  File size /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4198800332
+
+[2025-12-03 14:03:36] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:09:25] [ERROR]: File does not exist: 
+
+[2025-12-03 14:09:25] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)
+
+[2025-12-03 14:09:25] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4
+
+[2025-12-03 14:09:25] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:09:25] [ERROR]: get_filesize:  /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt1.mp4 2859871054
+
+[2025-12-03 14:13:00] [ERROR]: get_filesize:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4 605017524
+
+[2025-12-03 14:13:00] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:13:00] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4
+
+[2025-12-03 14:13:00] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:13:00] [ERROR]: get_filesize:  /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt2.mp4 2184528982
+
+[2025-12-03 14:15:44] [ERROR]: get_filesize:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4 556274602
+
+[2025-12-03 14:15:44] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:15:44] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp4
+
+[2025-12-03 14:15:44] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:15:44] [ERROR]: get_filesize:  /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt3.mp4 2065722191
+
+[2025-12-03 14:18:19] [ERROR]: get_filesize:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4 513849577
+
+[2025-12-03 14:18:19] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt3.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:18:19] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4
+
+[2025-12-03 14:18:19] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:18:19] [ERROR]: get_filesize:  /mnt/media/Temp/complete/Irresistible Beauties Vol 9 (2025)/Irresistible Beauties Vol 9 (2025) - pt4.mp4 2420420338
+
+[2025-12-03 14:21:11] [ERROR]: get_filesize:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4 532903552
+
+[2025-12-03 14:21:11] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) - pt4.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:21:11] [ERROR]: File is not a regular file: /mnt/media/Temp/complete/Super Model Solos 2 (2011)
+
+[2025-12-03 14:21:11] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi
+
+[2025-12-03 14:21:11] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:21:11] [ERROR]: get_filesize:  /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD1.avi 736311296
+
+[2025-12-03 14:21:57] [ERROR]: get_filesize:  /mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4 191762997
+
+[2025-12-03 14:21:57] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD1.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:21:57] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi
+
+[2025-12-03 14:21:57] [ERROR]: File does not exist: /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:21:57] [ERROR]: get_filesize:  /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos #2 CD2.avi 733667328
+
+[2025-12-03 14:22:42] [ERROR]: get_filesize:  /mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4 198800332
+
+[2025-12-03 14:22:42] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos #2 CD2.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 14:30:20] [ERROR]: Filesystem error: filesystem error: directory iterator cannot open directory: No such file or directory [Irresistible Beauties Vol 9 (2025)]
+
+[2025-12-03 14:30:20] [ERROR]: Filesystem error: filesystem error: directory iterator cannot open directory: No such file or directory [Irresistible Beauties Vol 9 (2025)]
+
+[2025-12-03 14:30:20] [ERROR]: Filesystem error: filesystem error: directory iterator cannot open directory: No such file or directory [Super Model Solos 2 (2011)]
+
+[2025-12-03 14:30:20] [ERROR]: Filesystem error: filesystem error: directory iterator cannot open directory: No such file or directory [Super Model Solos 2 (2011)]
+
+[2025-12-03 14:47:00] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025). encountered an ERROR with exit code 183
+
+[2025-12-03 15:00:11] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025). encountered an ERROR with exit code 254
+
+[2025-12-03 15:03:51] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025). encountered an ERROR with exit code 234
+
+[2025-12-03 15:08:59] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025) encountered an ERROR with exit code 234
+
+[2025-12-03 15:25:08] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Irresistible Beauties Vol 9 (2025).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-03 15:47:09] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/Super Model Solos 2 (2011).ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 15:48:13] [ERROR]: process_file: Starting /mnt/media/Temp/complete/[DorcelClub] Agatha Vega, Geisha Kyd - Give in to temptation (20.02.2023) rq.mp4
+
+[2025-12-03 15:48:57] [ERROR]: process_outputFile: Move to dest_path /mnt/media/Temp/working///mnt/media/Temp/Staging/[DorcelClub] Agatha Vega, Geisha Kyd - Give in to temptation (20.02.2023) rq.ff.crf34.nvenc.h264.mp4
+
+[2025-12-03 17:07:52] [ERROR]: encode_video:  /mnt/media/Temp/Staging/.ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-03 17:23:17] [ERROR]: encode_video:  /mnt/media/Temp/Staging/.ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-03 18:25:07] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos 2 CD1.avi
+
+[2025-12-03 18:25:52] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos 2 CD2.avi
+
+[2025-12-03 18:26:37] [ERROR]: process_file: Starting /mnt/media/Temp/complete/temp/Anal-Angels.21.06.11.Mia.Richi.XXX.SD.MP4-KLEENEX.mp4
+
+[2025-12-03 18:26:58] [ERROR]: process_file: Starting /mnt/media/Temp/complete/temp/[DorcelClub] Agatha Vega, Geisha Kyd - Give in to temptation (20.02.2023) rq.mp4
+
+[2025-12-03 19:09:13] [ERROR]: Invalid EncoderFactory. Exiting.
+
+[2025-12-03 19:12:27] [ERROR]: process_file: Starting /mnt/media/Temp/complete/114 Climaxes 103 Spams Yume Nishimiya (2021)/114 Climaxes 103 Spams Yume Nishimiya (2021).mp4
+
+[2025-12-03 19:14:12] [ERROR]: process_file: Starting /mnt/media/Temp/complete/119 Cum Bukkake Shots Hotaru Nogi (2021)/119 Cum Bukkake Shots Hotaru Nogi (2021).mp4
+
+[2025-12-03 19:16:06] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Big Fn Titties 19 (2025)/Big Fn Titties 19 (2025).mp4
+
+[2025-12-03 19:22:26] [ERROR]: process_file: Starting /mnt/media/Temp/complete/114 Climaxes 103 Spams Yume Nishimiya (2021)/114 Climaxes 103 Spams Yume Nishimiya (2021).mp4
+
+[2025-12-03 19:24:11] [ERROR]: process_file: Starting /mnt/media/Temp/complete/119 Cum Bukkake Shots Hotaru Nogi (2021)/119 Cum Bukkake Shots Hotaru Nogi (2021).mp4
+
+[2025-12-03 19:26:05] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Big Fn Titties 19 (2025)/Big Fn Titties 19 (2025).mp4
+
+[2025-12-03 19:31:24] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Cum Dumpster Teens 2 (2025)/Cum Dumpster Teens 2 (2025).mp4
+
+[2025-12-03 19:36:28] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Party Life Sharing My Wife 4 (2025)/Party Life Sharing My Wife 4 (2025).mp4
+
+[2025-12-03 19:42:44] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Size Curious Brats 5 (2022)/Size Curious Brats 5 (2022).mp4
+
+[2025-12-03 19:46:53] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos 2 CD1.avi
+
+[2025-12-03 19:47:39] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Super Model Solos 2 (2011)/Super Model Solos 2 CD2.avi
+
+[2025-12-03 19:48:24] [ERROR]: process_file: Starting /mnt/media/Temp/complete/The Best of Forbidden Scenes 14 (2025)/The Best of Forbidden Scenes 14 (2025).mp4
+
+[2025-12-03 19:58:18] [ERROR]: process_file: Starting /mnt/media/Temp/complete/The Craving (2007)/The Craving (2007).mp4
+
+[2025-12-03 20:01:39] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Tied Up and Assfucked 2 (2020)/Tied Up and Assfucked 2 (2020).mp4
+
+[2025-12-03 20:07:02] [ERROR]: process_file: Starting /mnt/media/Temp/complete/temp/Anal-Angels.21.06.11.Mia.Richi.XXX.SD.MP4-KLEENEX.mp4
+
+[2025-12-03 20:07:23] [ERROR]: process_file: Starting /mnt/media/Temp/complete/temp/[DorcelClub] Agatha Vega, Geisha Kyd - Give in to temptation (20.02.2023) rq.mp4
+
+[2025-12-04 00:07:32] [ERROR]: process_file: Starting /mnt/media/Temp/complete/temp/Anal-Angels.21.06.11.Mia.Richi.XXX.SD.MP4-KLEENEX.mp4
+
+[2025-12-04 00:07:52] [ERROR]: process_file: Starting /mnt/media/Temp/complete/temp/[DorcelClub] Agatha Vega, Geisha Kyd - Give in to temptation (20.02.2023) rq.mp4
+
+[2025-12-04 00:18:12] [ERROR]: process_file: Starting /mnt/media/Temp/complete/A Echter Wiener German (2022)/A Echter Wiener German (2022).mp4
+
+[2025-12-04 00:19:14] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Angels 7 (2022)/Anal Angels 7 (2022).mp4
+
+[2025-12-04 00:21:25] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Angels 7 (2022)/cic-analangels7.nfo
+
+[2025-12-04 00:21:26] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Angels 8 (2023)/Anal Angels 8 (2023).mp4
+
+[2025-12-04 00:23:18] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Angels 8 (2023)/cic-analangels8.nfo
+
+[2025-12-04 00:23:18] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Sex Games (2016)/Sex Games (2016) - pt1.mp4
+
+[2025-12-04 00:23:51] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Sex Games (2016)/Sex Games (2016) - pt2.mp4
+
+[2025-12-04 00:24:09] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Sex Games (2016)/Sex Games (2016) - pt3.mp4
+
+[2025-12-04 00:24:41] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Sex Games (2016)/Sex Games (2016) - pt4.mp4
+
+[2025-12-04 00:25:29] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Sex Games (2016)/Sex Games (2016) - pt5.mp4
+
+[2025-12-04 01:57:38] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Models 11 (2022)/Anal Models 11 (2022).mp4
+
+[2025-12-04 01:59:22] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Oil Latex 3 (2023)/Anal Oil Latex 3 (2023).mp4
+
+[2025-12-04 12:35:46] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Players 7 (2023)/Anal Players 7 (2023) - pt1.mp4
+
+[2025-12-04 12:43:37] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Analized 2 (2023)/Analized 2 (2023).mp4
+
+[2025-12-04 12:50:54] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Beautiful Tits 9 (2022)/Beautiful Tits 9 (2022).mp4
+
+[2025-12-04 12:57:27] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Big Boob Angels (2022)/Big Boob Angels (2022) - pt1.mp4
+
+[2025-12-04 12:59:53] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Big Boob Angels 2 (2022)/Big Boob Angels 2 (2022) - pt1.mp4
+
+[2025-12-04 13:07:50] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Big Titty Black Beauties 2 (2022)/Big Titty Black Beauties 2 (2022).mp4
+
+[2025-12-04 13:11:14] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Bitches Love Anal Sex (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-04 13:23:55] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Booty Fanatics (2022)/Booty Fanatics (2022).mp4
+
+[2025-12-04 13:29:12] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Brickzilla Monster Of Cock (2022)/Brickzilla Monster Of Cock (2022).mp4
+
+[2025-12-04 13:41:04] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Cosplay Girls (2024)/Cosplay Girls (2024).mp4
+
+[2025-12-04 13:51:03] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Cream Filled College Girls 4 (2020)/Cream Filled College Girls 4 (2020).mp4
+
+[2025-12-04 14:18:51] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Cream Pies Vol 2 (2022).ff.crf34.nvenc.h264.mp4
+
+[2025-12-04 14:23:13] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Cream Pies Vol 2 (2022).ff.crf34.nvenc.h264.mp4
+
+[2025-12-04 14:32:42] [ERROR]: process_file: Starting /mnt/media/Temp/complete/DP Masters 8 (2022)/DP Masters 8 (2022).mp4
+
+[2025-12-04 14:48:53] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Please 2 (2022)/Anal Please 2 (2022) - pt1.mp4
+
+[2025-12-04 14:57:23] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Please 2 (2022)/Anal Please 2 (2022) - pt1.mp4
+
+[2025-12-04 15:03:13] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Please 2 (2022)/Anal Please 2 (2022) - pt1.mp4
+
+[2025-12-04 15:05:06] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Anal Please 2 (2022)/Anal Please 2 (2022) - pt2.mp4
+
+[2025-12-04 15:06:43] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Bitches Love Anal Sex (2022)/Bitches Love Anal Sex (2022) - pt1.mp4
+
+[2025-12-04 15:07:06] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Bitches Love Anal Sex (2022)/Bitches Love Anal Sex (2022) - pt2.mp4
+
+[2025-12-04 15:07:30] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Bitches Love Anal Sex (2022)/Bitches Love Anal Sex (2022) - pt3.mp4
+
+[2025-12-04 15:07:55] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Bitches Love Anal Sex (2022)/Bitches Love Anal Sex (2022) - pt4.mp4
+
+[2025-12-04 15:08:18] [ERROR]: process_file: Starting /mnt/media/Temp/complete/Bitches Love Anal Sex (2022)/Bitches Love Anal Sex (2022) - pt5.mp4
+
+[2025-12-04 17:02:28] [ERROR]: encode_video:  /mnt/media/Temp/Staging/DP Masters 8 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 137
+
+[2025-12-04 20:18:30] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Greatest Gang Bangs 2 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 137
+
+[2025-12-05 15:05:06] [ERROR]: encode_video:  /mnt/media/Temp/Staging/Hot Bodies Vol 5 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 137
+
+[2025-12-05 19:00:27] [ERROR]: Invalid EncoderFactory. Exiting.
+
+[2025-12-05 19:34:52] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Safe Word (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 183
+
+[2025-12-05 19:34:54] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Schoolgirls in XXX Training 8 (2020).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 183
+
+[2025-12-05 19:59:37] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Sexual Icons 2 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 183
+
+[2025-12-05 20:04:01] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Safe Word (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 183
+
+[2025-12-05 20:04:03] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Schoolgirls in XXX Training 8 (2020).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 183
+
+[2025-12-06 01:11:18] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 02:12:19] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264. encountered an ERROR with exit code 234
+
+[2025-12-06 02:14:42] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264. encountered an ERROR with exit code 234
+
+[2025-12-06 02:15:50] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264. encountered an ERROR with exit code 234
+
+[2025-12-06 02:20:31] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264. encountered an ERROR with exit code 234
+
+[2025-12-06 02:23:19] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264. encountered an ERROR with exit code 234
+
+[2025-12-06 02:25:09] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264.ts encountered an ERROR with exit code 218
+
+[2025-12-06 02:26:27] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022) - pt1.ff.crf34.nvenc.h264.ts encountered an ERROR with exit code 254
+
+[2025-12-06 02:26:28] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022) - pt2.ff.crf34.nvenc.h264.ts encountered an ERROR with exit code 254
+
+[2025-12-06 02:26:29] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022) - pt3.ff.crf34.nvenc.h264.ts encountered an ERROR with exit code 254
+
+[2025-12-06 02:26:30] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022) - pt4.ff.crf34.nvenc.h264.ts encountered an ERROR with exit code 254
+
+[2025-12-06 19:05:09] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Young Fantasies Vol 8 (2022).ff.crf34.nvenc.h264.ts encountered an ERROR with exit code 218
+
+[2025-12-06 20:35:29] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/19 ans... Jeune escorte (2015).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 144
+
+[2025-12-06 20:35:29] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/19 ans... Jeune escorte (2015).ff.crf34.nvenc.h264.mp4
+
+[2025-12-06 21:37:22] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/18 With Proof 4 (2009).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 22:02:17] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/3 X Three (2021).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 22:50:32] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/18 With Proof 4 (2009).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 22:54:26] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/18 With Proof 4 (2009).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 23:00:37] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/18 With Proof 4 (2009).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 23:39:00] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/9 Lives of a Wet Pussy (1976) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-06 23:39:00] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/9 Lives of a Wet Pussy (1976) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 00:02:00] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/18 With Proof 4 (2009).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 00:03:28] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/9 Lives of a Wet Pussy (1976) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 00:03:28] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/9 Lives of a Wet Pussy (1976) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 00:13:35] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/9 Lives of a Wet Pussy (1976) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 00:13:35] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/9 Lives of a Wet Pussy (1976) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 01:40:47] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 01:40:47] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 12:56:22] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 12:56:22] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 13:17:14] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 13:17:14] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 13:19:58] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Love Triangle 2 (2014).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 13:47:28] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Thousand and One Erotic Nights (1982) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 13:47:28] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Thousand and One Erotic Nights (1982) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 13:47:30] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Thousand and One Erotic Nights Part II The Forbidden Tales (1988) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 13:47:30] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Thousand and One Erotic Nights Part II The Forbidden Tales (1988) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 14:07:07] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Womans Torment (1977) [1080p].ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 14:07:07] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Womans Torment (1977) [1080p].ff.crf34.nvenc.h264.mp4
+
+[2025-12-07 15:32:06] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/All Natural (2021).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 15:45:24] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/All Star Moms 4 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 15:54:05] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Amateurs Caught on Cam 9 (2021).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 15:58:18] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/An Enticing Invitation (2021).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 16:03:50] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 17:10:26] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Beauty 16 (2022).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 19:06:37] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Icons (2021).ff.crf34.nvenc.h264.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 19:41:21] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/3 X Three (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 21:02:22] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/3 X Three (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 21:07:45] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 21:07:45] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/A Climax Of Blue Power (1974) [1080p].ff.crf34.nvenc.h264.converted.mp4
+
+[2025-12-07 22:36:47] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Size Queens (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 22:52:23] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Superstars (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 22:56:04] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Teen Angels 16 (2020).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 22:59:40] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Teen Angels 20 (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 23:14:09] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anal Threesomes by Private 4 (2020).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 23:40:48] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anikka's Bootycise (2015).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 254
+
+[2025-12-07 23:49:27] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Anyone But My Husband (1975) [1080p].ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-07 23:49:27] [ERROR]: process_file: Move to trash_path /mnt/media3/porn/temp/Staging/trash///mnt/media3/porn/temp/Staging/Anyone But My Husband (1975) [1080p].ff.crf34.nvenc.h264.converted.mp4
+
+[2025-12-08 00:08:33] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Asian Anal (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-08 01:02:40] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Ass-Diction (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-08 01:22:24] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Assparade 73 (2020).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+
+[2025-12-08 01:24:55] [ERROR]: encode_video:  /mnt/media3/porn/temp/Staging/Assparade 74 (2021).ff.crf34.nvenc.h264.converted.mp4 encountered an ERROR with exit code 218
+

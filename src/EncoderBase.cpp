@@ -1,6 +1,7 @@
 #include "EncoderBase.h"
 
 #include <filesystem> // Required for std::filesystem
+#include <cstring>  // For memset
 #include <iostream>
 #include <cstdlib> // For system()
 
@@ -55,11 +56,32 @@ int EncoderBase::process()
 }
 
 
+int EncoderBase::process_consolidated()
+{
+	init_suffix();
+	init_encode();
+	init_decode();
+
+	// Check if the directory exists
+    if (pathExists(encode_data->source_path))
+    {
+        log (INFO, "process_consolidated:  Processing source path: " + encode_data->source_path);
+        return process_consolidated(encode_data->source_path);
+    }
+    else
+    {
+        log (ERROR, "process_consolidated: " + encode_data->source_path + "' is not a valid source directory.");
+        return -1;
+    }	
+
+    return 0;
+}
+
 int EncoderBase::process_directory(const string& sourcepath) 
 {
     log (INFO, "process_directory " + sourcepath);
 
-    fs::path _sourcepath = sourcepath;
+    fs::path _sourcepath(sourcepath);
 	
 	//Check if the directory exists
     if (!pathExists(_sourcepath)) 
@@ -68,19 +90,26 @@ int EncoderBase::process_directory(const string& sourcepath)
         return -1;
     }
 
+	std::vector<std::filesystem::path> files_in_directory;
+	std::copy(std::filesystem::directory_iterator(_sourcepath), std::filesystem::directory_iterator(), std::back_inserter(files_in_directory));
+	std::sort(files_in_directory.begin(), files_in_directory.end());
+
+	for (const auto& entry : files_in_directory) 
+	{
+	
  
     // Create a directory_iterator to traverse the directory
     // This will iterate through the immediate children of the directory
-    for (const auto& entry : std::filesystem::directory_iterator(_sourcepath)) 
-    {
+//    for (const auto& entry : std::filesystem::directory_iterator(_sourcepath)) 
+//    {
         // 'entry' is a std::filesystem::directory_entry object
         // You can access various properties of the entry:
-        if (fileExists(entry.path())) 
-            process_file (entry.path().string(), _sourcepath.string());	         
-        else if (pathExists(entry.path())) 
-            process_directory (entry.path().string());
+        if (fileExists(entry)) 
+            process_file (entry.string(), _sourcepath.string());	         
+        else if (pathExists(entry)) 
+            process_directory (entry.string());
 		else
-			log (WARNING, "process_directory: " + entry.path().string() + " is neither a file nor a directory");
+			log (WARNING, "process_directory: " + entry.string() + " is neither a file nor a directory");
         
     }
     return 0;
@@ -91,57 +120,77 @@ int EncoderBase::process_file(const string& _item, const string& _sourcepath)
 	fs::path sourcepath = _sourcepath;
     fs::path item = _item;
 
-    if (fileExists(item)) 
-    {	
-		string filename = item.filename().string();
-		string filename_without_extension = item.stem().string();
-		
-//		string file_codec = get_decode_codec(item.string());
-		
-//		log "$INFO" "process_file:  $item CODEC $(get_decode_codec "$item")"
-		
-		bool bFound = check_addon(filename_without_extension);
+	log (INFO, "process_file: Starting " + item.string());
 
-		if( bFound == false )
+    if (fileExists(item)) 
+    {
+		string filename_without_extension = item.stem().string();
+
+		struct video_detail video_detail;
+		get_video_detail(video_detail, item.string());
+
+		struct encode_detail encoder;
+		memset(&encoder, 0, sizeof(encode_detail));
+		encoder.output_video = encode_data->staging_path+filename_without_extension+"."+suffix_string;
+		
+//		bool bFound = false;//has_been_converted(filename_without_extension);
+
+		if( !has_been_converted(filename_without_extension) )
         {
 //			log (INFO, "process_file: The filename " + filename_without_extension + " Encoding needed");
-
-			string output_video = encode_data->staging_path+filename_without_extension+"."+suffix_string;			
-			if ( !fileExists(output_video, true) ) 
+						
+			if ( !fileExists(encoder.output_video, true) ) 
             {
-				string file_extension = item.extension().string();
-				int32_t src_size = get_filesize(item.string());
-				int32_t bitrate = encode_data->bitrate;
-					
-				bFound = false;
+//				bFound = false;
 				
-/*                for element in "${extensions_array[@]}"; do
-					if [[ "$element" == "$file_extension" ]]; then
-						found=1
-						break
-					fi
-				done
-*/
-				if (src_size > encode_data->max_size || bFound) 
-                {
-				    bitrate = get_bitrate(item.string(), src_size);
+                if(std::find(encode_data->extensions_vector.begin(), encode_data->extensions_vector.end(), item.extension().string()) != encode_data->extensions_vector.end() )
+				{
+					if (video_detail.file_size > encode_data->max_size ) 
+					{
+						encoder.input_file = item.string();
+						encoder.src_file_count = count_files_in_directory(_sourcepath);
+				//		encoder.bitrate = video_detail.bitrate;
+				//		encoder.audio_bitrate = video_detail.audio_bitrate;
+						encoder.codec = video_detail.codec;
+						encoder.res = video_detail.res;
+						encoder.bMultifile = false;
+				//		encoder.extension = encode_data->extension;
+						encoder.bitrate = encode_data->bitrate;//get_bitrate(item.string(), src_size, encode_data->bitrate);
+						if (encode_data->bitrate > 0)
+						{
+							encoder.bitrate = video_detail.bitrate/1024;
+							
+							if ( encoder.bitrate > encode_data->bitrate )
+								encoder.bitrate = encode_data->bitrate;
+						}									
 
-					//encode_data->audio_bitrate = "";
-					int32_t audio_bitrate = get_audio_bitrate(item.string());	
-					
-					if (encode_video(item.string(), output_video, bitrate, audio_bitrate)) 
-                    {
-						process_outputFile(output_video, filename_without_extension + "." + encode_data->addon_string, _sourcepath);	
-					} 
-                    else if (fileExists(output_video)) 
-                    {
-						move_file(output_video, encode_data->trash_path);
-					}	
+						//encode_data->audio_bitrate = "";
+						if (encode_data->audio_bitrate > 0)
+							encoder.audio_bitrate = video_detail.audio_bitrate;
+						
+						dump(video_detail, 0);
+						if (encode_video(encoder))
+						{
+							process_outputFile(encoder.output_video, item.parent_path(), video_detail.file_size);	
+						} 
+						else if (fileExists(encoder.output_video)) 
+						{
+							move_file(encoder.output_video, encode_data->trash_path);
+							log (ERROR, "process_file: Move to trash_path " + encode_data->trash_path + "/" + encoder.output_video);
+						}	
+					}
+					else
+					{
+						log (ERROR, "process_file: src_size > max_size " + item.string() + " " + to_string(video_detail.file_size) + " <= " + to_string(encode_data->max_size));
+					}
 				}
+				else
+					log (DEBUG, "process_file: Extension is not in the vector " + item.extension().string());
+
 			} 
             else 
             {
-				log (INFO, "process_file:  " + output_video + " ALREADY exist");
+				log (INFO, "process_file:  " + encoder.output_video + " ALREADY exist");
 			}
 		}
 		else
@@ -156,49 +205,163 @@ int EncoderBase::process_file(const string& _item, const string& _sourcepath)
 	return 0;
 }
 
-int EncoderBase::process_outputFile(const string& outputFile, const string& outputName, const string& sourcePath, int32_t src_size)
+/*int EncoderBase::process_file(const string& _item, const string& _sourcepath)
 {
-    int outSize = get_filesize(outputFile);
+	fs::path sourcepath = _sourcepath;
+    fs::path item = _item;
+
+	log (INFO, "process_file: Starting " + item.string());
+
+    if (fileExists(item)) 
+    {
+		string filename_without_extension = item.stem().string();
+
+		struct video_detail video_detail;
+		get_video_detail(video_detail, item.string());
+
+		struct encode_detail encoder;
+		memset(&encoder, 0, sizeof(encode_detail));
+		encoder.output_video = encode_data->staging_path+filename_without_extension+"."+suffix_string;
+		encoder.input_file = item.string();
+		encoder.src_file_count = count_files_in_directory(_sourcepath);
+		encoder.bitrate = video_detail.bitrate;
+		encoder.audio_bitrate = video_detail.audio_bitrate;
+		encoder.codec = video_detail.codec;
+		encoder.res = video_detail.res;
+
+		//string filename = item.filename().string();
+		
+		
+//		string file_codec = get_decode_codec(item.string());
+		
+//		log "$INFO" "process_file:  $item CODEC $(get_decode_codec "$item")"
+		
+		bool bFound = false;//has_been_converted(filename_without_extension);
+
+		if( !has_been_converted(filename_without_extension) )
+        {
+//			log (INFO, "process_file: The filename " + filename_without_extension + " Encoding needed");
+
+						
+			if ( !fileExists(encoder.output_video, true) ) 
+            {
+//				string file_extension = item.extension().string();
+//				int64_t src_size = get_filesize(item.string());
+//				int64_t bitrate = encode_data->bitrate;
+					
+				bFound = false;
+				
+//                for element in "${extensions_array[@]}"; do
+//					if [[ "$element" == "$file_extension" ]]; then
+//						found=1
+//						break
+//					fi
+//				done
+
+				if (video_detail.file_size > encode_data->max_size || bFound) 
+                {
+				    int64_t bitrate = video_detail.bitrate;//get_bitrate(item.string(), src_size, encode_data->bitrate);
+					if (encode_data->bitrate > 0)
+					{
+						encoder.bitrate = video_detail.bitrate/1024;
+						
+						if ( encoder.bitrate > 0 )
+						{
+							if ( encoder.bitrate > encode_data->bitrate )
+								encoder.bitrate = encode_data->bitrate;
+						}
+						else
+							encoder.bitrate = encode_data->bitrate;
+					}									
+
+					//encode_data->audio_bitrate = "";
+					//int64_t audio_bitrate = get_audio_bitrate(item.string(), encode_data->audio_bitrate);	
+					int64_t audio_bitrate = 0;
+					if (encode_data->audio_bitrate > 0)
+						encoder.audio_bitrate = video_detail.audio_bitrate;
+					
+					dump(video_detail, 0);
+					if (encode_video(encoder))//item.string(), output_video, bitrate, audio_bitrate)) 
+                    {
+						//process_outputFile(output_video, filename_without_extension + "." + encode_data->addon_string, _sourcepath, video_detail.file_size);
+						process_outputFile(encoder.output_video, item.parent_path(), video_detail.file_size);	
+					} 
+                    else if (fileExists(encoder.output_video)) 
+                    {
+						move_file(encoder.output_video, encode_data->trash_path);
+						log (ERROR, "process_file: Move to trash_path " + encode_data->trash_path + "/" + encoder.output_video);
+					}	
+				}
+				else
+				{
+					log (ERROR, "process_file: src_size > max_size " + item.string() + " " + to_string(video_detail.file_size) + " <= " + to_string(encode_data->max_size));
+				}
+			} 
+            else 
+            {
+				log (INFO, "process_file:  " + encoder.output_video + " ALREADY exist");
+			}
+		}
+		else
+		{
+			log (INFO, "process_file: The filename " + filename_without_extension + " contains check string");
+		}
+    }
+	else
+	{
+    	log (INFO, "process_file: " + _item + " is neither a file nor a directory");
+	}
+	return 0;
+}
+*/
+
+int EncoderBase::process_outputFile(const string& outputFile, const string& sourcePath, int64_t src_size)
+{
+    int64_t outSize = get_filesize(outputFile);
 	
 	if (outSize == 0) 
  		delete_file(outputFile);
 	else
     {					
-		if ( pathExists(encode_data->dest_path)) 
+		if ( pathExists(encode_data->dest_path))
+		{ 
 			move_file(outputFile, encode_data->dest_path);
+			log (DEBUG, "process_outputFile: Move to dest_path " + encode_data->dest_path + " " + outputFile);
+		}
 		else
 		{
             if (encode_data->trash_file_size == 0 )
 			{
 				if (outSize < src_size) {
-					move_file(outputFile, encode_data->source_path);
-					log (ERROR, encode_data->source_path + "/" + outputName);
+				//	move_file(outputFile, encode_data->source_path);
+					move_file(outputFile, sourcePath);
+				//	log (ERROR, "process_outputFile: outSize < src_size" encode_data->source_path + "/" + outputName);
 				} 
                 else 
                 {
 					move_file(outputFile, encode_data->trash_path);
+					log (DEBUG, "process_outputFile: outSize Larger than  src_size" + encode_data->trash_path + "/" + outputFile);
 				}
 			} 
             else if (outSize > encode_data->trash_file_size) 
             {
 				move_file(outputFile, encode_data->trash_path);
+				log (DEBUG, "process_outputFile: outSize Larger than  trash_file_size" + encode_data->trash_path + "/" + outputFile);
 			} 
             else 
             {
-				move_file(outputFile, encode_data->source_path);
-				log (ERROR, encode_data->source_path + "/" + outputName);
+				//move_file(outputFile, encode_data->source_path);
+				move_file(outputFile, sourcePath);
+				log (DEBUG, "process_outputFile: Move to Source " + sourcePath + "/" + outputFile);
             }
         }
     }
     return 0;
 }
 
-
 int EncoderBase::process_into_single_file(const string& _sourcePath)
 {
-	// log (INFO, "process_into_single_file " + sourcePath);
-
-//    fs::path path = _sourcePath;
+	log (DEBUG, "process_into_single_file: " + _sourcePath);
  
 	if (!pathExists(_sourcePath)) 
     {
@@ -206,117 +369,206 @@ int EncoderBase::process_into_single_file(const string& _sourcePath)
         return 1;
     }
 
-    string current_dir_name = fs::path(_sourcePath).filename().string();
+    string current_dir_name = fs::path(_sourcePath).filename();
+	log (DEBUG, "process_into_single_file:  current_dir_name " + current_dir_name);
+
 	string current_dir_name_wo_dates = remove_dates_from_filename(current_dir_name);
-	
-	log (INFO, "process_into_single_file: " + current_dir_name_wo_dates);
-	
-	string output_file= encode_data->staging_path + current_dir_name + ".txt";
-//	input_file="$current_dir_name*"	
-	string output_video = encode_data->staging_path + current_dir_name + "." + suffix_string;
-	int32_t bitrate = encode_data->bitrate;
+	log (DEBUG, "process_into_single_file:  current_dir_name_wo_dates " + current_dir_name_wo_dates);
+
+	struct encode_detail encoder;
+	memset(&encoder, 0, sizeof(encode_detail));
+	encoder.output_video = encode_data->staging_path + current_dir_name + "." + suffix_string;
     
-	if (fileExists(output_video, true))
+	if (fileExists(encoder.output_video, true))
 	{ 
 		//check to see if it's not empty
-		log (INFO, "process_into_single_file:  " + output_video + " Already exist in DEST");
+		log (WARNING, "process_into_single_file:  " + encoder.output_video + " Already exist in DEST");
 		return 1;
 	}
+
+	encoder.input_file = encode_data->staging_path + current_dir_name + ".txt";
+	encoder.src_file_count = count_files_in_directory(_sourcePath);
+	encoder.bitrate = encode_data->bitrate;
 	
 	//Create or clear the output file
-    touch_file(output_file);
+    touch_file(encoder.input_file);
 
-	int32_t file_count= count_files_in_directory(_sourcePath);
-	int32_t src_size=0;
-	
 	// Loop through each file in the directory
-	for (const auto& itr : fs::directory_iterator(_sourcePath)) 
-    {
-        std::filesystem::path item = itr.path();
+	std::vector<std::filesystem::path> files_in_directory;
+	std::copy(std::filesystem::directory_iterator(_sourcePath), std::filesystem::directory_iterator(), std::back_inserter(files_in_directory));
+	std::sort(files_in_directory.begin(), files_in_directory.end());
+
+	for (const auto& itr : files_in_directory) 
+	{
+        std::filesystem::path item = itr;
 		// Check if it's a file or directory
         if (fileExists(item)) 
         {
-			
 			//check to see if it's a single file
-			if (file_count == 1) 
+			if (encoder.src_file_count == 1) 
             {
-				process_file(item.filename().string(), _sourcePath);
-				delete_file(output_file);
+				process_file(item.string(), _sourcePath);
+				delete_file(encoder.input_file);
 				return 1;
 			}
-			
-			src_size= src_size + get_filesize(item.filename().string());
-		
+
 			string filename=item.filename().string();
 			string filename_without_extension=filename.substr(0, filename.find_last_of('.'));
 			//check to see if new file has NOT already been created and it matches the input wildcard 
-			if (check_addon(filename_without_extension)) 
-            {
+			if (!has_been_converted(filename_without_extension)) 
+			{
 				if (filename_without_extension.find(current_dir_name_wo_dates) == 0) 
-                    append_to_file(output_file, "file '" + item.filename().string() + "'\n");
-					//printf "file '%s'\n" "$item" >> "$output_file"
+				{
+					if(std::find(encode_data->extensions_vector.begin(), encode_data->extensions_vector.end(), item.extension().string()) != encode_data->extensions_vector.end() )
+					{
+						struct video_detail video_detail;
+						get_video_detail(video_detail, item.string());
+
+						if( encoder.res.height == 0)
+						{
+							encoder.res = video_detail.res;
+						}
+
+						//check the resolution and make it smaller if the sizes are different
+						if( encoder.res.height != video_detail.res.height )
+						{
+							encoder.bRescale = true;
+						}
+						if( encoder.res.height > video_detail.res.height )
+						{
+							encoder.res = video_detail.res;
+						}
+						
+						encoder.src_size += video_detail.file_size;
+						//check to see if new file has NOT already been created and it matches the input wildcard 
+						append_to_file(encoder.input_file, "file '" + item.string() + "'\n");
+					}
+					else
+					{
+						log (DEBUG, "process_into_single_file: Extension is not in the vector " + item.extension().string());
+					}
+				}
 				else
+				{
 					log(WARNING, "process_into_single_file: error - WILDCARD " + filename_without_extension + " DOES NOT matches " + current_dir_name_wo_dates);
-				
-            } 
+				}
+
+			}
 			else
-				log (WARNING, "process_into_single_file: info - CHECK " + filename_without_extension + " does matches check string");
-            
+			{
+				log (DEBUG, "process_into_single_file: " + filename_without_extension + " already converted");
+			}
+
+/*			
+			struct video_detail video_detail;
+			get_video_detail(video_detail, item.string());
+
+			if(std::find(encode_data->extensions_vector.begin(), encode_data->extensions_vector.end(), item.extension().string()) != encode_data->extensions_vector.end() )
+			{
+				if( encoder.res.height == 0)
+				{
+					encoder.res = video_detail.res;
+				}
+
+				//check the resolution and make it smaller if the sizes are different
+				if( encoder.res.height != video_detail.res.height )
+				{
+					encoder.bRescale = true;
+				}
+				if( encoder.res.height > video_detail.res.height )
+				{
+					encoder.res = video_detail.res;
+				}
+				
+				encoder.src_size += video_detail.file_size;
+			
+				string filename=item.filename().string();
+				string filename_without_extension=filename.substr(0, filename.find_last_of('.'));
+				//check to see if new file has NOT already been created and it matches the input wildcard 
+				if (!has_been_converted(filename_without_extension)) 
+				{
+					if (filename_without_extension.find(current_dir_name_wo_dates) == 0) 
+					{
+						append_to_file(encoder.input_file, "file '" + item.string() + "'\n");
+					}
+					else
+						log(WARNING, "process_into_single_file: error - WILDCARD " + filename_without_extension + " DOES NOT matches " + current_dir_name_wo_dates);
+					
+				} 
+				else
+					log (DEBUG, "process_into_single_file: info - CHECK " + filename_without_extension + " does matches check string");
+			}
+			else
+				log (DEBUG, "process_into_single_file: Extension is not in the vector " + item.extension().string());*/			
+			
         }
+		else
+			log (DEBUG, "process_into_single_file: " + item.string()  + " is not a file");
     }
 	
-	if (fileExists(output_file, true)) 
+	if (fileExists(encoder.input_file, true)) 
     {
+		encoder.bMultifile = true;
 		//check to see if it's not empty
-		if (encode_video(output_file, output_video, bitrate, 1)) 
+		dump_directory(_sourcePath);
+//		if (encode_video(encoder.input_file, encoder.output_video, encoder.bitrate, 0, 1)) 
+		if (encode_video(encoder)) 
         {
-			process_outputFile(output_video, current_dir_name + "." + encode_data->addon_string, _sourcePath, src_size);	
+			//process_outputFile(output_video, current_dir_name + "." + encode_data->addon_string, _sourcePath, src_size);
+			process_outputFile(encoder.output_video, _sourcePath, encoder.src_size);	
 		}
         else
         {
-			if (fileExists(output_video)) 
+			if (fileExists(encoder.output_video)) 
             {
-				move_file(output_video, encode_data->trash_path);
+				move_file(encoder.output_video, encode_data->trash_path);
 			}
 		}
     }
     else
     {
-		delete_file(output_file);
+		log (DEBUG, "process_into_single_file: output_file is empty " + encoder.input_file);
+		delete_file(encoder.input_file);
 	}
     return 0;
 }
 
-
 int EncoderBase::process_consolidated(const string& _sourcePath)
 {
-    log(INFO, "process_consolidated " + _sourcePath);
+    log(INFO, "process_consolidated: " + _sourcePath);
 	
 	//check to see if current directory has files in it
-	if (count_files_in_directory(_sourcePath) > 0) {
-		//log "$INFO" "There are files in the directory."
+	if (count_files_in_directory(_sourcePath) > 0) 
+	{
+		log(DEBUG, "process_consolidated: There are files in the directory " + _sourcePath);
 		process_into_single_file(_sourcePath);
-		return 1;
+		//return 1;
 	}
 				
 		
 	if (pathExists(_sourcePath)) 
     {
+		std::vector<std::filesystem::path> files_in_directory;
+		std::copy(std::filesystem::directory_iterator(_sourcePath), std::filesystem::directory_iterator(), std::back_inserter(files_in_directory));
+		std::sort(files_in_directory.begin(), files_in_directory.end());
 
-        for (const auto& itr : fs::directory_iterator(_sourcePath)) 
-        {			// Check if it's a file or directory
-
-            fs::path item = itr.path();
-			if (pathExists(item)) {
-				if (count_files_in_directory(item.filename().string()) > 0) 
+		for (const auto& itr : files_in_directory) 
+		{
+            fs::path item = itr;
+			if (pathExists(item)) 
+			{
+				int32_t count = count_files_in_directory(item.string());
+				if (count > 0) 
                 {
 					//log "$INFO" "There are files in the directory."
-					process_into_single_file(item.filename().string());
+					log(DEBUG, "process_consolidated " + item.string() + " has " + to_string(count) + " files.");
+					process_into_single_file(item.string());
 				} 
                 else 
                 {
 					//log "$INFO" "There are NO files in the directory."
-					process_consolidated(item.filename().string());
+					log(DEBUG, "process_consolidated " + item.string() + " has no files.");
+					process_consolidated(item.string());
 				
 				}
 			}
@@ -333,8 +585,6 @@ int EncoderBase::process_consolidated(const string& _sourcePath)
 
 }
 
-
-
 void EncoderBase::init_decode()
 {
 	encode_data->decode_string= add_decode_setting("");
@@ -348,432 +598,103 @@ void EncoderBase::init_encode()
 }
 
 
-/*
-int EncoderBase::encode_video(const string& input_file, const string& output_video, int32_t bitrate, int32_t audio_bitrate, int32_t multi_file)
+struct resolution EncoderBase::get_resolution(const string& input_file)
 {
-	//Nvidia cannot decode av1 videos
-	if ( multi_file == 0 ) 
-    {
-		if (encode_data->encoder == "nvenc" && get_decode_codec(input_file) == "av1") 
-        {
-			log (INFO, "encode_video: " + input_file + " NVIDIA does not support decoding av1");
-			return 1;
-		}
-	}
-	string command;	
-    int result = 0;
-	if (encode_data->encoder_type == "ffmpeg") 
-    {
-		if ( encode_data->multi_pass == "1" )
-        {
-			command = encode_data->ffmpeg_path+"ffmpeg "+ add_error_logging() + add_decode_setting(input_file) + "-i \"" + input_file + "\" " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " -pass 1 -vsync cfr -f null /dev/null";
-			log (INFO, "encode_video: Executing " + command);
-			result = system (command.c_str());
-			command = encode_data->ffmpeg_path+"ffmpeg "+ add_error_logging() + add_decode_setting(input_file) + "-i \"" + input_file + "\" " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " -pass 2 " + add_audio_encode() + " \"" + output_video + "\"";
-			log (INFO, "encode_video: Executing " + command);
-			result = system (command.c_str());
-        }
-		else
-		{
-            command = encode_data->ffmpeg_path+"ffmpeg "+ add_error_logging() + add_decode_setting(input_file) + add_concat(multi_file) + "-i \"" + input_file + "\" " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " \"" + output_video + "\"";
-			log (INFO, "encode_video: Executing " + command);
-			
-			result = system (command.c_str());
-			
-        }
-    }
+	struct resolution res;
+    res.height = 0;
+    res.width = 0;
+	return res;
+}
+
+string EncoderBase::get_convert_string()
+{
+	return "";	
+}
+void EncoderBase::get_video_detail(struct video_detail& data, const string& fileName)
+{
+	fs::path item = fileName;
+
+    data.filename = fileName;
+    data.file_size = get_filesize(fileName);
+    data.bitrate = get_bitrate(fileName, data.file_size);
+    data.audio_bitrate = get_audio_bitrate(fileName);
+    data.res = get_resolution(fileName);
+
+	data.extension = item.extension().string();
+	data.codec = get_decode_codec(fileName);
+	if (data.codec.find('\n') != std::string::npos) 
+	{
+        // Remove line breaks
+        data.codec.erase(std::remove(data.codec.begin(), data.codec.end(), '\n'), data.codec.end());
+	}		
+}
+
+void EncoderBase::dump(struct video_detail& data, int type)
+{
+	log (INFO, "");
+	log (INFO, "********************************************");
+	if(type == 0) 
+		log (INFO, "*****             SOURCE             *******");
 	else
-    {
-		command = encode_data->handbrake_path+"HandBrakeCLI -i \"" + input_file + "\" -o \"" + output_video + "\" " + add_decode_setting(input_file) + " " + encode_data->encode_string + " " + add_bitrate(bitrate) + " " + add_audio_bitrate(audio_bitrate) + " " + add_multi_pass();
-		log (INFO, "encode_video: Executing " + command);
-		result = system (command.c_str());
-    }
-	int output = WEXITSTATUS(result);
-	if (output != 0) {
-		log (ERROR, "encode_video:  " + output_video + " encountered an ERROR with exit code " + std::to_string(output));
-		return 1;
-	}
+		log (INFO, "*****             TARGET             *******");
 	
-	return 0;
+	log (INFO, "*****");
+	dump(data);
+	log (INFO, "*****");
+	log (INFO, "********************************************");
+	log (INFO, "");
+
 }
 
-void EncoderBase::init_suffix()
+void EncoderBase::dump(struct video_detail& data)
 {
-	if( suffix_string.empty() )
-	{
-		suffix_string = encode_data->codec + ".mp4";
-		if ( encode_data->encoder == "vaapi" )
-			suffix_string = "va." + suffix_string;
-		else if ( encode_data->encoder == "qsv" )
-			suffix_string = "qsv." + suffix_string;
-		else if ( encode_data->encoder == "nvenc" )
-			suffix_string = "nvenc." + suffix_string;
-		
-		if ( encode_data->crf_string != "" )
-			suffix_string = "crf" + encode_data->crf_string + "." + suffix_string;
-		
-		if ( encode_data->encoder_type == "ffmpeg" )
-			suffix_string = "ff." + suffix_string;
-		else 
-			suffix_string = "hb." + suffix_string;
-		
-
-		log (INFO,  "init_suffix: " + suffix_string);
-	}
+	log (INFO, "Filename: " + data.filename);
+	log (INFO, "File Size: " + to_string(data.file_size));
+	log (INFO, "Bitrate: " + to_string(data.bitrate));
+	log (INFO, "Audio Bitrate: " + to_string(data.audio_bitrate));
+	log (INFO, "Codec: " + data.codec);
+	log (INFO, "Extension: " + data.extension);
+	log (INFO, "Resolution: " + to_string(data.res.width) + " x " + to_string(data.res.height));
 }
 
-void EncoderBase::init_decode()
+void EncoderBase::dump(const string& filename, int type)
 {
-	encode_data->decode_string= add_decode_setting("");
-	log (INFO,  "init_decode: " + encode_data->decode_string);
+	struct video_detail video_detail;
+	get_video_detail(video_detail, filename);
+	dump(video_detail, type);
 }
 
-void EncoderBase::init_encode()
+void EncoderBase::dump_directory(const string& path, int type)
 {
-	encode_data->encode_string = add_encode_setting() + add_encoder() + add_CRF() + add_maxrate() + add_bufsize() + add_preset() + add_audio_encode();
-	log (INFO,  "init_encode: " + encode_data->encode_string);
-}
-
-string EncoderBase::add_decode_setting(string input_file)
-{
-
-	string Decoder;
-	if ( encode_data->encoder_type == "ffmpeg" )
-    {
-		Decoder = "-init_hw_device qsv -hwaccel qsv -hwaccel_output_format qsv ";
-
-        if ( encode_data->encoder == "qsv" && encode_data->codec == "h264" )
-		{ 
- 			if ( get_decode_codec(input_file) == "av1" )
-            {
-				Decoder = "";
-			}
-		}
-		else if (encode_data->encoder == "vaapi" )
-		{
-			Decoder="";
-//			Decoder="-vaapi_device /dev/dri/renderD128 ";
-		}
-		else if ( encode_data->encoder == "nvenc" )
-		{
-			if ( get_decode_codec(input_file) == "av1" )
-			{
-				Decoder="";
-			}
-			else
-			{
-				Decoder="-hwaccel cuda -hwaccel_output_format cuda ";
-			}
-		}
-		else
-		{
-			Decoder="";			
-		}
-    }
-	else if (encode_data->encoder == "qsv" )
-	{
-		Decoder="--enable-hw-decoding qsv ";
-	}
-
-	return Decoder;		
-}
-
-string EncoderBase::add_concat(int multi_file) 
-{
-	if (encode_data->consolidate > 0 && multi_file > 0) 
-	{
-		return "-f concat -safe 0 ";
-	}
-    return string("");
-}
-
-string EncoderBase::get_decode_codec(string  input_file)
-{
-	if (std::filesystem::exists(input_file)) 
-    {
-        std::string command = "ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 " + input_file;
-        // Execute the command and redirect output to a temporary file
-        // NOTE: This approach needs platform-specific handling for file redirection (e.g., "> output.txt" in most shells)
-        return execute_command(command);
-    }
-
-    return string("");
-}
-
-
-string EncoderBase::add_encode_setting()
-{
-	if (encode_data->encoder_type == "ffmpeg" )
-		if (encode_data->encoder == "vaapi" )
-			if ( !encode_data->scale.empty() )
-				return "-vf 'format=nv12,hwupload,scale_vaapi=" + encode_data->scale + "'";
-			else
-				return "-vf 'format=nv12,hwupload'";
-    return string("");
-}
-
-string EncoderBase::add_encoder()
-{
-	if (encode_data->encoder_type == "ffmpeg" )
-    {
-		if (encode_data->encoder == "qsv" || encode_data->encoder == "vaapi" )
-        {
-			if( encode_data->codec == "h264" ) return "-c:v h264_" + encode_data->encoder;
-			if( encode_data->codec == "hevc" ) return "-c:v hevc_" + encode_data->encoder;
-			if( encode_data->codec == "h265" ) return "-c:v hevc_" + encode_data->encoder;
-			if( encode_data->codec == "av1" ) return "-c:v av1_" + encode_data->encoder;
-			return "-c:v " + encode_data->codec;
-        }
-        else if (encode_data->encoder == "nvenc" )
-		{
-            if( encode_data->codec == "h264" ) return "-c:v h264_" + encode_data->encoder;
-			if( encode_data->codec == "hevc" ) return "-c:v hevc_" + encode_data->encoder;
-			if( encode_data->codec == "h265" ) return "-c:v hevc_" + encode_data->encoder;
-			return "-c:v " + encode_data->codec;
-        }
-        else
-			return "-c:v " + encode_data->codec;
-    }
-    else if (encode_data->encoder == "qsv" )
-    {
-        if( encode_data->codec == "h264" ) return "-e qsv_h264";
-        if( encode_data->codec == "hevc" ) return "-e qsv_h265";
-        if( encode_data->codec == "h265" ) return "-e qsv_h265";
-        if( encode_data->codec == "av1" ) return "-e qsv_av1";
-        return "-e qsv_h264";
-    }
-    else
-        return "-e " + encode_data->codec;
-    return "";
-}
-
-string EncoderBase::add_CRF()
-{
-	if ( encode_data->crf_string != "" )
-		if (encode_data->encoder_type == "ffmpeg" )
-			if (encode_data->encoder == "qsv" || encode_data->encoder == "vaapi" )
-				return "-global_quality:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50";
-			else
-				if (encode_data->encoder == "nvenc" )
-					if  (encode_data->codec == "libx264" || encode_data->codec == "libx265" )
-                            return "-crf:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50";
-					else
-						return "-rc:v vbr -cq:v " + encode_data->crf_string + " -extbrc 1 -look_ahead_depth 50";
-		else if (encode_data->encoder_type == "handbrake" )
-			return "-q:v "+ encode_data->crf_string;
-
-    return "";
-}	
-
-string EncoderBase::add_maxrate()
-{
-	if (encode_data->maxrate != "" )
-		if (encode_data->encoder_type == "ffmpeg" )
-			return "-maxrate " + encode_data->maxrate + "k";
-		else if (encode_data->encoder_type == "handbrake" )
-			return "--maxBitrate " + encode_data->maxrate;
-	return "";
-}
-
-string EncoderBase::add_bufsize()
-{
-	if (encode_data->bufsize != "" )
-		if (encode_data->encoder_type == "ffmpeg" )
-			return "-bufsize " + encode_data->bufsize + "k";
-		else if (encode_data->encoder_type == "handbrake" )
-			return "--vbv-bufsize " + encode_data->bufsize;
-	return "";
-}
-
-string EncoderBase::add_preset()
-{
-	if (encode_data->preset != "" )
-    {
-		if (encode_data->encoder_type == "ffmpeg" )
-			return "-preset " + encode_data->preset;
-		else if (encode_data->encoder_type == "handbrake" )
-			return "--preset \"" + encode_data->preset + "\""; 
-	}
-	return "";
-}
-
-string EncoderBase::add_audio_encode()
-{
-    if (encode_data->audio_encode != "" )
-		return encode_data->audio_encode;
-	else if (encode_data->encoder_type == "handbrake" )
-		return "-E copy –audio-copy-mask ac3,dts,dtshd –audio-fallback ffac3";
+	string filename;
+	int64_t size = 0;
+	int64_t bitrate = 0;
+				
+	log (INFO, "");
+	log (INFO, "********************************************");
+	if(type == 0) 
+		log (INFO, "*****             SOURCE             *******");
 	else
-		return "-c:a copy";
+		log (INFO, "*****             TARGET             *******");
+	log (INFO, "*****");
 	
-    return "";
-}
+	std::vector<std::filesystem::path> files_in_directory;
+	std::copy(std::filesystem::directory_iterator(path), std::filesystem::directory_iterator(), std::back_inserter(files_in_directory));
+	std::sort(files_in_directory.begin(), files_in_directory.end());
 
-string EncoderBase::add_scale()
-{
-	if (encode_data->scale != "")
-   		return "-vf \"scale=" + encode_data->scale + "\"";
-
-    return "";
-
-}
-
-string EncoderBase::add_multi_pass()
-{
-    if (encode_data->multi_pass != "")
-		if ( encode_data->encoder_type == "handbrake" )
-			return "--multi-pass";
-    return "";
-}
-
-
-string EncoderBase::add_bitrate(const int32_t& bitrate)
-{
-	if ( bitrate != 0)
-    {
-		if ( encode_data->encoder_type == "ffmpeg" )
-			return "-b:v " + to_string(bitrate) + "k";
-		else if ( encode_data->encoder_type == "handbrake" )
-			return "--vb " + to_string(bitrate) + "k";
-    }
-    return "";
-}
-
-int32_t EncoderBase::get_bitrate(string input, int32_t file_size)
-{
-	int32_t bitrate = 0;
-	if (encode_data->bitrate > 0)
-    {
-		string command = "(ffmpeg -i " + input + " 2>&1 | grep \"bitrate:\")";
-        string output = execute_command(command); 
-			
-		command = "(echo \"$output\" | awk -F 'bitrate: ' '{print $2}' | awk '{print $1}')";
-		string bitrate_awk = execute_command(command);
-
-        if ( bitrate_awk != "" )
-        {
-            log( INFO, "get_bitrate:  bitrate_awk0 " + bitrate_awk);
-            int32_t value = stoi(bitrate_awk);
-            bitrate = value * 1024;
-
-            log( INFO, "get_bitrate:  bitrate_awk " + to_string(bitrate));
-        }   
-        else	
-        {
-            //get the size in bits
-            file_size = file_size * 8; 
-
-            // Get video duration in seconds
-            command = "$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"" + input + "\")";
-            string duration = execute_command(command);
-            
-            log (INFO, duration  + " " + to_string(file_size));
-
-            int32_t duration_value = stoi(duration);
-
- 			if (duration_value != 0 )
-            {
-                //int32_t value = stoi(encode_data->src_bitrate);
-                bitrate = file_size / duration_value;
-            }
-			else
-				bitrate = encode_data->bitrate;
-        }
-
-        bitrate = bitrate/1024;
-        
-        if ( bitrate > 0 )
-        {
-            if ( bitrate > encode_data->bitrate )
-                bitrate = encode_data->bitrate;
-        }
-        else
-            bitrate = encode_data->bitrate;
-    }
-        
-    return bitrate;				
-}
-
-
-string EncoderBase::add_audio_bitrate(const int32_t& bitrate)
-{
-	if ( bitrate != 0)
-    {
-		if ( encode_data->encoder_type == "ffmpeg" )
-			return "-b:a " + to_string(bitrate) + "k";
-	}
-	return "";
-}
-
-
-int32_t EncoderBase::get_audio_bitrate(const string& input_file)
-{
-	int32_t bitrate = 0;
-	if (encode_data->audio_bitrate > 0)
-    {
-
-		string command = "(ffprobe -v error -select_streams a:0 -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 \"" + input_file + "\")";
-		string output = execute_command(command); 
-		
-		log(INFO, "get_audio_bitrate:  output " + output);
-
-		command = "(echo \"" + output + "\" | awk -F', ' '/Audio:/ {print $NF}' | awk '{print $(NF-1)}')";
-		int32_t bitrate_awk = atoi(execute_command(command).c_str());
-		
-		log(INFO, "get_audio_bitrate:  bitrate_awk " + bitrate_awk);
-		
-		if (bitrate_awk > 0)
-		{
-			log(INFO, "get_audio_bitrate:  bitrate_awk0 " + to_string(bitrate_awk));
-			bitrate = bitrate_awk * 1024;
-			
-			log( INFO, "get_audio_bitrate:  audio_bitrate " + to_string(bitrate));
-		}
-	}
-
-    return bitrate;
-}
-
-bool EncoderBase::check_addon(const string& file)
-{
-	if( encode_data->check_addon_string.empty() )
+	for (const auto& itr : files_in_directory) 
 	{		
-		string check = encode_data->codec;
-		if (encode_data->encoder == "vaapi" )  check = "va." + check;
-		else if (encode_data->encoder == "qsv" )  check = "qsv." + check;
-		else if (encode_data->encoder == "nvenc" )  check = "nvenc." + check;
-
-		encode_data->check_addon_string = check;
-		log( INFO, "check_addon_string:  " + encode_data->check_addon_string);
-	}
-
-	//log( INFO, "check_addon_string:  " + file + " " +encode_data->check_addon_string);
-
-
-	if (file.length() >= encode_data->check_addon_string.length()) {
-        if(file.substr(file.length() - encode_data->check_addon_string.length()) == encode_data->check_addon_string ) {
-	//		log( INFO, "check_addon:  returning true");
-			return true;
+		fs::path item = itr;
+		if (fileExists(item)) 
+		{
+			struct video_detail video_detail;
+			get_video_detail(video_detail, item.string());
+			dump(video_detail);
 		}
-    }
+		log (INFO, "*****");
+	}
+	log (INFO, "********************************************");
+	log (INFO, "");
 
-//    if(file.find(encode_data->check_addon_string) != string::npos)
-//        return true;
-	//log( INFO, "check_addon:  returning false");
-    
-    return false;
 }
-
-string EncoderBase::add_error_logging()
-{
-	string error = "";
-	
-	if (encode_data->error_logging > 0 ) 
-        error="-xerror -loglevel info";
-	
-    return error;
-}
-
-*/
-
 

@@ -51,7 +51,9 @@ void Configuration::set_encode_data(encode_struct& _encode_data)
 	encode_data->addon_string="";
 //    encode_data->src_bitrate="";
 	encode_data->scale="";
-    encode_data->check_addon_string="";
+    encode_data->extension="mp4";
+
+    encode_data->converted_string="converted";
 
     encode_data->consolidate=0;
 	encode_data->error_logging=0;
@@ -59,11 +61,8 @@ void Configuration::set_encode_data(encode_struct& _encode_data)
 	encode_data->audio_bitrate=0;
 	encode_data->max_size=0;     
 	encode_data->trash_file_size=0;
-    encode_data->extensions_array.clear();
+    encode_data->extensions_vector.clear();
 }
-
-
-
 
 string Configuration::dump(const char* value, int type) 
 {
@@ -74,13 +73,13 @@ string Configuration::dump(const char* value, int type)
         switch(type)
         {
             case 1: // Integer
-                snprintf(buffer, 256, "%s = %d\n", value, config[value].as<int>());
+                snprintf(buffer, 256, "%s = %d", value, config[value].as<int>());
                 return string(buffer);
             case 2: // Boolean
-                snprintf(buffer, 256, "%s = %s\n", value, config[value].as<bool>() ? "true" : "false");
+                snprintf(buffer, 256, "%s = %s", value, config[value].as<bool>() ? "true" : "false");
                 return string(buffer);
             default: // String
-                snprintf(buffer, 256, "%s = %s\n", value, config[value].as<string>().c_str());
+                snprintf(buffer, 256, "%s = %s", value, config[value].as<string>().c_str());
                 return string(buffer);
         }
     }
@@ -93,6 +92,13 @@ try {
         if (config[value])
         {
             return config[value].as<string>();
+         /*   if (data.find('\n') != std::string::npos) 
+            {
+                // Remove line breaks
+                data.erase(std::remove(data.begin(), data.end(), '\n'), data.end());
+            }	
+            return data;
+            */
         }
         else
         {
@@ -106,7 +112,6 @@ try {
 
     
 }
-
 
 int32_t Configuration::get_int(const char* value) 
 {
@@ -146,22 +151,30 @@ int Configuration::initialize()
 	encode_data->encoder_type=get_string("encoder_type");
     encode_data->scale=get_string("scale");
     encode_data->audio_encode=get_string("audio_encode");
+    encode_data->extension=get_string("extension");
+
+//    log (INFO, "extension = " + encode_data->extension);
+
 
     encode_data->crf_string = get_string("crf");
     encode_data->maxrate = get_string("maxrate");
     encode_data->bufsize = get_string("bufsize");
 
     encode_data->multi_pass = get_string("multi_pass");
-    encode_data->audio_encode = get_string("audio_encode");
-
-	
+ 	
 	//encode_data->addon=get_string("addon");
 	encode_data->consolidate=get_int("consolidate");
 	encode_data->error_logging=get_int("error_logging");
 	encode_data->bitrate=get_int("bitrate");
     encode_data->audio_bitrate = get_int("audio_bitrate");
 	encode_data->max_size=get_int("max_size");
-    encode_data->trash_file_size=get_int("trash_file_size");     
+    encode_data->trash_file_size=get_int("trash_file_size");
+    encode_data->converted_string=get_string("converted_string");
+
+    
+
+    load_extension_vector(get_string("extensions_vector")); 
+    
     
     return 0;
 } 
@@ -185,27 +198,32 @@ int Configuration::validate_config()
 
 
 	// Check if the destination directory is provided and exists
-    if (!pathExists(encode_data->dest_path)) 
+/*    if (!pathExists(encode_data->dest_path)) 
     {
-        log (INFO, "Error: '" + encode_data->dest_path + "' is not a valid source directory.");
+        log (INFO, "Error: '" + encode_data->dest_path + "' is not a valid dest directory.");
         return -1;
     }	
-
+*/
 	// Check if the trash directory exists
     if (!pathExists(encode_data->trash_path)) 
     {
-        log (INFO, "Error: '" + encode_data->trash_path + "' is not a valid source directory.");
+        log (INFO, "Error: '" + encode_data->trash_path + "' is not a valid trash_path directory.");
         return -1;
-    }	
+    }
+    
+    if ( encode_data->extensions_vector.size() == 0 )
+    {
+        log (INFO, "Error: Extension vector is empty.");
+        return -1;
+    }
 	
 //	encode_data->src_bitrate=encode_data->bitrate;
     encode_data->max_size= encode_data->max_size * 1024 * 1024;
+
 	if( encode_data->trash_file_size == 0 )
         encode_data->trash_file_size= encode_data->max_size * 9 / 10;
 
-
     return 0;
-
 }
 
 
@@ -261,6 +279,7 @@ bool Configuration::process(const char* config_file)
     log(INFO, dump( "multi_pass"));
     log(INFO, dump( "encoder_type"));
     log(INFO, dump( "scale"));
+    log(INFO, dump( "extension"));
 
 //	log(INFO, dump( "src_bitrate", 1));
 	log(INFO, dump( "max_size", 1));
@@ -269,15 +288,34 @@ bool Configuration::process(const char* config_file)
 	log(INFO, dump( "bufsize", 1));
 	log(INFO, dump( "consolidate", 1));
 	log(INFO, dump( "error_logging", 1));
+	log(INFO, dump( "extensions_vector"));
+    dump_extension_vector();
     return true;
-	
-	
-
-
-
 //	init_addon
 //	init_decode
 //	init_encode
 }
 
+
+int32_t Configuration::load_extension_vector(const string& extensions) 
+{
+    std::stringstream ss(extensions);
+    std::string item;
+
+    // Split the string using a stringstream
+    while (std::getline(ss, item, ',')) 
+    {
+        encode_data->extensions_vector.push_back(item);
+    }
+
+    return encode_data->extensions_vector.size();
+}
+
+void Configuration::dump_extension_vector() 
+{
+    for (const auto& num : encode_data->extensions_vector)
+    {
+        log(INFO, "extensions_vector: " + num);
+    }
+}
 

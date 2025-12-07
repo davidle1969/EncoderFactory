@@ -16,10 +16,10 @@ struct encode_struct
     int consolidate;
 	int error_logging;
 	
-	int bitrate;
-    int audio_bitrate;
-	int max_size;	
-	int trash_file_size;
+	int64_t bitrate;
+    int64_t audio_bitrate;
+	int64_t max_size;	
+	int64_t trash_file_size;
 
     std::string encode_string;
 	std::string decode_string;
@@ -39,6 +39,7 @@ struct encode_struct
 	std::string encoder_type;
 //    std::string addon;
     std::string scale;
+    std::string extension;
 
     std::string crf_string;
     std::string maxrate;
@@ -47,9 +48,10 @@ struct encode_struct
     
 	std::string audio_encode;
  //   std::string src_bitrate;
-    std::string check_addon_string;
+//    std::string check_addon_string;
+    std::string converted_string;
 
-    std::vector<std::string> extensions_array;
+    std::vector<std::string> extensions_vector;
 };
 
 
@@ -72,6 +74,8 @@ public:
     std::string get_value(const char* value, int type = 0);
     std::string get_string(const char* value);
     int32_t get_int(const char* value);
+    int32_t load_extension_vector(const std::string& extensions);
+    void dump_extension_vector();
 
 
  /*

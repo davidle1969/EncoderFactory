@@ -19,8 +19,8 @@ public:
     int process_directory(const string& item);
     int process_file(const string& item, const string& _sourcepath);
  
-    int encode_video(const string& input_file, const string& output_video, int32_t bitrate=0, int32_t audio_bitrate=0, int32_t multi_file=0);
-    int process_outputFile(const string& outputFile, const string& outputName, const string& sourcePath, int32_t src_size = 0);
+    int encode_video(const string& input_file, const string& output_video, int64_t bitrate=0, int64_t audio_bitrate=0, int64_t multi_file=0);
+    int process_outputFile(const string& outputFile, const string& outputName, const string& sourcePath, int64_t src_size = 0);
 
     int process_into_single_file(const string& sourcePath);
     int process_consolidated(const string& _sourcePath);
@@ -43,11 +43,11 @@ public:
     string add_audio_encode();
     string add_scale();
     string add_multi_pass();
-    string add_audio_bitrate(const int32_t& bitrate);
-    string add_bitrate(const int32_t& bitrate);
+    string add_audio_bitrate(const int64_t& bitrate);
+    string add_bitrate(const int64_t& bitrate);
 
-    int32_t get_bitrate(string input_file, int32_t file_size);
-    int32_t get_audio_bitrate(const string& input_file);
+    int64_t get_bitrate(string input_file, int64_t file_size);
+    int64_t get_audio_bitrate(const string& input_file);
 
     bool check_addon(const string& file);
     string add_error_logging();

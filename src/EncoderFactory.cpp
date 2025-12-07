@@ -49,7 +49,7 @@ EncoderBase* EncoderFactory::getEncoder()
 
 int EncoderFactory::process(const char* config_file)
 {
-//    openlogfile();
+	setLogLevel(DEBUG);
 	log(INFO, "START");
 	config.set_encode_data(encode_data);	
     config.process(config_file);
@@ -68,7 +68,7 @@ int EncoderFactory::process(const char* config_file)
 		if (encode_data.consolidate == 0 )
 			result = encoder->process();
 		else
-			result = encoder->process_consolidated(encode_data.source_path);
+			result = encoder->process_consolidated();//encode_data.source_path);
 
 		delete encoder;
 	}
